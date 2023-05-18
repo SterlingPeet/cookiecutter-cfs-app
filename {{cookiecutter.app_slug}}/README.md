@@ -74,4 +74,3 @@ for many aspects of F´ are available [here](../docs/Tutorials/README.md).
 Date | Description
 ---- | -----------
 <TODAY> | Initial Deployment Design
-
