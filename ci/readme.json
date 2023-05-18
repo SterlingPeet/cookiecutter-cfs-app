@@ -1,0 +1,141 @@
+{
+    "variables_table": {
+        "full_name": {
+            "default_value": "Sterling Peet",
+            "help": "Main author of this deployment.\n\n        Can be set in your ``~/.cookiecutterrc`` config file."
+        },
+        "email": {
+            "default_value": "noreply@nospam.com",
+            "help": "Contact email of the author.\n\n        Can be set in your ``~/.cookiecutterrc`` config file."
+        },
+        "deployment_display_name": {
+            "default_value": "My Example",
+            "help": "The printed name of this deployment for documentation and strings.  It should be concise and convey the purpose of the deployment."
+        },
+        "dep_short_description": {
+            "default_value": "An example deployment [...]",
+            "help": "One line description of the deployment's purpose (used in headers and comments)."
+        },
+        "deployment_slug": {
+            "default_value": "MyExample",
+            "help": "A slug_ is a simplified version of the ``deployment_name``, which will be used for the topology assembly name and file names within the deployment folder structure.  It should be ``TitleCase`` with no spaces or special characters."
+        },
+        "deployment_path": {
+            "default_value": "example/path",
+            "help": "This is the path from the F Prime root to the current directory, not including the deployment's folder.  Do not add a ``/`` to the front or back of the path."
+        },
+        "deployment_path_to_project_root": {
+            "default_value": "..",
+            "help": "This is the path from inside the deployment folder to the main project root.  This is usually just up one directory."
+
+        },
+        "deployment_path_to_fprime_framework": {
+            "default_value": "../fprime",
+            "help": "This is the path from inside the deployment folder to the folder containing F Prime.  In most cases, these two folders are adjacent in the project root folder."
+        },
+        "deployment_target_platform_support": {
+            "default_value": "Native",
+            "help": "Target platform for the deployment.  This gets used in the ``settings.ini`` file to avoid typing the platform when invoking ``fprimt-util``."
+        },
+        "deployment_baremetal_scheduler": {
+            "default_value": "no",
+            "help": "Select the bare metal scheduler instead of the normal Pthreads scheduler.  Small platforms may not support Pthreads, and true bare metal platforms may not even have threading support at all. If you don't know that you want the bare metal schedular, you don't."
+        },
+        "deployment_rg_sched_contexts_hpp": {
+            "default_value": "no",
+            "help": "Use a separate contexts header file to define the deployment's rate group contexts."
+        },
+        "deployment_parameter_support": {
+            "default_value": "yes",
+            "help": "Include components and connections to support persistent parameter storage using the F Prime parameter subsystem."
+        },
+        "deployment_command_sequence_support": {
+            "default_value": "yes",
+            "help": "Include the components and connections needed for command sequence support."
+        },
+        "deployment_event_text_log_support": {
+            "default_value": "yes",
+            "help": "Include the components and connections needed for for local text logging of events."
+        },
+        "deployment_file_xfer_support": {
+            "default_value": "yes",
+            "help": "Include the components and connections needed for file uplink and downlink support."
+        },
+        "deployment_health_support": {
+            "default_value": "yes",
+            "help": "Include the components and connections needed for component health check/ping support."
+        },
+        "deployment_ref_doc_boilerplate": {
+            "default_value": "no",
+            "help": "Extra boilerplate documentation to support better understanding of the project."
+        },
+        "component_name": {
+            "default_value": "Led Blinker",
+            "help": "The printed name of this internal deployment component for documentation and strings.  It should be concise and convey the purpose of the component."
+        },
+        "component_short_description": {
+            "default_value": "An example component [...]",
+            "help": "One line description of the project (used in headers and comments).  This should describe the purpose of the component in the Imperetive Voice, not the context where the component is used."
+        },
+        "component_slug": {
+            "default_value": "LedBlinker",
+            "help": "A slug_ is a simplified version of the ``component_name``, which will be used for the class name and file names within the component folder structure.  It should be ``TitleCase`` with no spaces or special characters."
+        },
+        "component_dir_name": {
+            "default_value": "LedBlinker",
+            "help": "This is the name of the component's main directory.  The obvious choice is to use your ``deployment_slug`` for this field."
+        },
+        "component_explicit_component_suffix": {
+            "default_value": "Component",
+            "help": "The general convention is for F Prime components to have the ``Component`` suffix for file names and class names.  While it is not required, the Autocoder will assume this format, and Autocoder provided templates may be more difficult to adapt if this is not selected."
+        },
+        "component_explicit_common": {
+            "default_value": "",
+            "help": "If preferred, the cpp file with the common implementation code can be appended with the suffix ``Common``."
+        },
+        "component_impl_suffix": {
+            "default_value": "",
+            "help": "Some F Prime components use the ``Impl`` suffix for component class names and files.  It is redundant because the autocoded base file always uses the suffix ``Base``, but is available for backwards compatibility and completeness."
+        },
+        "component_path_to_fprime_root": {
+            "default_value": "../..",
+            "help": "This is the path from inside the component's folder to the F Prime root.  Do not add a ``/`` to the front or back of the path (this should auto-populate from the deployment path)."
+        },
+        "component_namespace": {
+            "default_value": "MyExample",
+            "help": "This is the namespace where your component's implementation class resides.  It is usually the same but can be different from the path.  If you want multiple levels of namespace, use the ``::`` notation."
+        },
+        "component_kind": {
+            "default_value": "passive",
+            "help": "You can choose and active or passive component type.  If you change your mind, is it set in the Autocoder input file (and some of the component's port kinds may also affected)."
+        },
+        "component_multiplatform_support": {
+            "default_value": "no",
+            "help": "If you need different implementations of your component based on the target platform, choose ``yes`` to get additional support file templates."
+        },
+        "component_instance_name": {
+            "default_value": "ledBlinker",
+            "help": "This is the variable name given to the instantiation of your component in the topology."
+        },
+        "startup_delay_msec": {
+            "default_value": "2000",
+            "help": "Startup delay during the deployment startup, so you can tell if you got the deployment into a boot loop.  This is only available on the ``Arduino`` platform."
+        },
+        "startup_arduino_led_flash": {
+            "default_value": "yes",
+            "help": "Flash the onboard LED to signal the startup process has worked.  Only available on Arduino."
+        },
+        "arduino_log_stream": {
+            "default_value": "Serial",
+            "help": "This is the ``Arduino`` stream where the debug statements for the main deployment will print."
+        },
+        "license": {
+            "default_value": "None",
+            "help": "License to use. Available options:\n\n        * None (no license text, assume project level license)\n        * BSD license\n        * MIT license\n\n        What license to pick? https://choosealicense.com/"
+        },
+        "internal_use": {
+            "default_value": "default",
+            "help": "This variable is an autogenerated dictionary built from the previous answers.  You should not need to adjust it, but if you are getting stuck, see the very top of this README for a solution."
+        }
+    }
+}

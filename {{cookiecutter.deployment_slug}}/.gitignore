@@ -1,0 +1,12 @@
+# The internal use dictionary is available for debugging
+# but is not needed for any part of normal usage nor for
+# regenerating the deployment with an updated template.
+.internal_use
+
+# ignore backup files
+*.bak
+*.log
+*~
+
+# OS Files
+.*DS_Store

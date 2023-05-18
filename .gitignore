@@ -1,0 +1,25 @@
+# Accidental Project stuff
+MyExample
+Reference
+
+# Testing Folders
+test-envs
+test-proj
+
+# tox progress info
+.progress
+
+# backup files
+*.bak
+*.orig
+
+# Python Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Tox
+.tox
+
+# OS Files
+.*DS_Store
