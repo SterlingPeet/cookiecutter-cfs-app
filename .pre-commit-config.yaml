@@ -6,12 +6,12 @@ exclude: ^(\.tox|ci|\.bumpversion\.cfg)(/|$)
 default_stages: [commit, merge-commit, push]
 repos:
 - repo: https://github.com/jorisroovers/gitlint
-  rev: v0.17.0
+  rev: v0.19.1
   hooks:
   - id: gitlint
     stages: [commit-msg]
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.1.0
+  rev: v4.4.0
   hooks:
   - id: check-added-large-files
   - id: check-ast
@@ -29,7 +29,7 @@ repos:
   - id: mixed-line-ending
   - id: trailing-whitespace
 - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-  rev: v2.2.0
+  rev: v2.9.0
   hooks:
   - id: pretty-format-ini
     args: [--autofix]
@@ -38,18 +38,18 @@ repos:
   - id: pretty-format-yaml
     args: [--autofix, --indent, '2']
 - repo: https://github.com/PyCQA/docformatter
-  rev: v1.5.0
+  rev: v1.7.0
   hooks:
   - id: docformatter
     args: [--in-place, --wrap-summaries, '95', --config, ./pyproject.toml]
 - repo: https://github.com/myint/rstcheck
-  rev: 3f92957
+  rev: v6.1.2
   hooks:
   - id: rstcheck
-    args: [--report=warning, '--ignore-directives=automodule,testsetup']
+    args: [--report-level=warning, '--ignore-directives=automodule,testsetup']
     additional_dependencies: [sphinx]
 - repo: https://github.com/PyCQA/pydocstyle
-  rev: 6.1.1
+  rev: 6.3.0
   hooks:
   - id: pydocstyle
     additional_dependencies: [toml]
@@ -58,27 +58,27 @@ repos:
   hooks:
   - id: isort
 - repo: https://github.com/pycqa/flake8
-  rev: 3.9.2
+  rev: 6.0.0
   hooks:
   - id: flake8
     args: ['--exclude=.tox,.eggs,ci/templates,build,dist']
 - repo: https://github.com/asottile/pyupgrade
-  rev: v2.31.0
+  rev: v3.4.0
   hooks:
   - id: pyupgrade
     args: [--py39-plus]
 - repo: https://github.com/psf/black
-  rev: 22.10.0
+  rev: 23.3.0
   hooks:
   - id: black
     args: [--skip-string-normalization, --line-length=79]
 - repo: https://github.com/asottile/blacken-docs
-  rev: v1.12.0
+  rev: 1.13.0
   hooks:
   - id: blacken-docs
-    additional_dependencies: [black==21.12b0]
+    additional_dependencies: [black==23.3.0]
 - repo: https://github.com/Yelp/detect-secrets
-  rev: v1.1.0
+  rev: v1.4.0
   hooks:
   - id: detect-secrets
           # args: [--baseline, ci/secrets.baseline]

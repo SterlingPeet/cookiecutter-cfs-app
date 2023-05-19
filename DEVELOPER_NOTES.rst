@@ -13,6 +13,7 @@ Future Work:
 
  * Template the file header generation so its not just the nasa Sample app output
  * Use Jinja loops to template out command, HK, and perf setup for dynamic quantities
+ * Write python wizard that leverages the cookiecutter questions interface for more flexible template generation
 
 
 Open Questions:

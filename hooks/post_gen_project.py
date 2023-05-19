@@ -1,22 +1,10 @@
+"""Post process the template files."""
 import datetime
 import os
-import re
-from glob import glob
-from os.path import join
-from pathlib import Path
-
-try:
-    from click.termui import secho
-except ImportError:
-    warn = print
-else:
-
-    def warn(text):
-        for line in text.splitlines():
-            secho(line, fg='white', bg='red', bold=True)
 
 
 def replace_contents(filename, what, replacement):
+    """Replace a string in the file with dynamic text."""
     with open(filename) as fh:
         changelog = fh.read()
     with open(filename, 'w') as fh:
@@ -26,15 +14,6 @@ def replace_contents(filename, what, replacement):
 if __name__ == '__main__':
     # Set some dates
     today = datetime.date.today()
-    replace_contents(
-        join('{{ cookiecutter.app_slug }}', 'docs', 'sdd.md'),
-        '<TODAY>',
-        today.strftime('%m/%d/%Y'),
-    )
-    replace_contents(
-        join('docs', 'sdd.md'), '<TODAY>', today.strftime('%m/%d/%Y')
-    )
-    replace_contents('README.md', '<TODAY>', today.strftime('%m/%d/%Y'))
     replace_contents('LICENSE', '<YEAR>', today.strftime('%Y'))
 
     # Delete license file if None was selected.
@@ -46,7 +25,7 @@ if __name__ == '__main__':
 ################################################################################
 ################################################################################
 
-    You have succesfully created the `{{ cookiecutter.app_display_name }}` cFS App.
+  You have succesfully created the `{{cookiecutter.app_display_name}}` cFS App.
 
 ################################################################################
 

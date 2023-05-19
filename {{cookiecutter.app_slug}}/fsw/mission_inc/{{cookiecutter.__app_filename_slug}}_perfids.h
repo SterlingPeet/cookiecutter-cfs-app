@@ -25,6 +25,6 @@
 #ifndef {{cookiecutter.__app_slug_uc}}_PERFIDS_H
 #define {{cookiecutter.__app_slug_uc}}_PERFIDS_H
 
-#define {{cookiecutter.__app_slug_uc}}_PERF_ID {{cookicutter.app_base_perf_id}}
+#define {{cookiecutter.__app_slug_uc}}_PERF_ID {{cookiecutter.app_base_perf_id}}
 
 #endif /* {{cookiecutter.__app_slug_uc}}_PERFIDS_H */
