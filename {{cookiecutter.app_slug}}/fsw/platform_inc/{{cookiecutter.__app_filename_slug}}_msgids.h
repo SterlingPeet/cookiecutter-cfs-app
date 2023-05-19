@@ -19,9 +19,9 @@
 /**
  * @file
  *
- * Define Sample App Message IDs
+ * Define {{cookiecutter.app_display_name}} App Message IDs
  *
- * \note The Sample App assumes default configuration which uses V1 of message id implementation
+ * \note The {{cookiecutter.app_display_name}} App assumes default configuration which uses V1 of message id implementation
  */
 
 #ifndef {{cookiecutter.__app_slug_uc}}_MSGIDS_H

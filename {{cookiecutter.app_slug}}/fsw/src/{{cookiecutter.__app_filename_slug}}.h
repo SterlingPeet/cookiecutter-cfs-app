@@ -19,7 +19,7 @@
 /**
  * @file
  *
- * Main header file for the SAMPLE application
+ * Main header file for the {{cookiecutter.app_display_name}} application
  */
 
 #ifndef {{cookiecutter.__app_slug_uc}}_H
@@ -34,9 +34,9 @@
 #include "cfe_sb.h"
 #include "cfe_es.h"
 
-#include "sample_app_perfids.h"
-#include "sample_app_msgids.h"
-#include "sample_app_msg.h"
+#include "{{cookiecutter.__app_filename_slug}}_perfids.h"
+#include "{{cookiecutter.__app_filename_slug}}_msgids.h"
+#include "{{cookiecutter.__app_filename_slug}}_msg.h"
 
 /***********************************************************************/
 #define {{cookiecutter.__app_slug_uc}}_PIPE_DEPTH 32 /* Depth of the Command Pipe for Application */
@@ -44,7 +44,7 @@
 #define {{cookiecutter.__app_slug_uc}}_NUMBER_OF_TABLES 1 /* Number of Table(s) */
 
 /* Define filenames of default data images for tables */
-#define SAMPLE_APP_TABLE_FILE "/cf/sample_app_tbl.tbl"
+#define {{cookiecutter.__app_slug_uc}}_TABLE_FILE "/cf/{{cookiecutter.__app_filename_slug}}_tbl.tbl"
 
 #define {{cookiecutter.__app_slug_uc}}_TABLE_OUT_OF_RANGE_ERR_CODE -1
 

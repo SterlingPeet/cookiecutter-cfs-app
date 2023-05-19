@@ -34,9 +34,9 @@
 #include "utstubs.h"
 
 #include "cfe.h"
-#include "sample_app_events.h"
-#include "sample_app.h"
-#include "sample_app_table.h"
+#include "{{cookiecutter.__app_filename_slug}}_events.h"
+#include "{{cookiecutter.__app_filename_slug}}.h"
+#include "{{cookiecutter.__app_filename_slug}}_table.h"
 
 /*
  * Macro to add a test case to the list of tests to execute

@@ -55,7 +55,7 @@ typedef {{cookiecutter.__app_slug_uc}}_NoArgsCmd_t {{cookiecutter.__app_slug_uc}
 
 /*************************************************************************/
 /*
-** Type definition (SAMPLE App housekeeping)
+** Type definition ({{cookiecutter.app_display_name}} App housekeeping)
 */
 
 typedef struct

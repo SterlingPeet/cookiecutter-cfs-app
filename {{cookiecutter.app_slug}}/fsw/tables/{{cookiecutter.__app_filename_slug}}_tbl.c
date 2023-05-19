@@ -17,7 +17,7 @@
  ************************************************************************/
 
 #include "cfe_tbl_filedef.h" /* Required to obtain the CFE_TBL_FILEDEF macro definition */
-#include "sample_app_table.h"
+#include "{{cookiecutter.__app_filename_slug}}_table.h"
 
 /*
 ** The following is an example of the declaration statement that defines the desired

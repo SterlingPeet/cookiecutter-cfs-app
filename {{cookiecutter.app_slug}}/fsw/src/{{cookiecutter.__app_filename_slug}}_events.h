@@ -19,7 +19,7 @@
 /**
  * @file
  *
- * Define SAMPLE App Events IDs
+ * Define {{cookiecutter.app_display_name}} App Events IDs
  */
 
 #ifndef {{cookiecutter.__app_slug_uc}}_EVENTS_H

@@ -1,16 +1,16 @@
-project(CFE_SAMPLE_APP C)
+project(CFE_{{cookiecutter.__app_slug_uc}} C)
 
 # Create the app module
-add_cfe_app(sample_app fsw/src/sample_app.c)
+add_cfe_app({{cookiecutter.__app_filename_slug}} fsw/src/{{cookiecutter.__app_filename_slug}}.c)
 
 # Include the public API from sample_lib to demonstrate how
 # to call library-provided functions
-add_cfe_app_dependency(sample_app sample_lib)
+add_cfe_app_dependency({{cookiecutter.__app_filename_slug}} sample_lib)
 
 # Add table
-add_cfe_tables(sample_app fsw/tables/sample_app_tbl.c)
+add_cfe_tables({{cookiecutter.__app_filename_slug}} fsw/tables/{{cookiecutter.__app_filename_slug}}_tbl.c)
 
-target_include_directories(sample_app PUBLIC
+target_include_directories({{cookiecutter.__app_filename_slug}} PUBLIC
   fsw/mission_inc
   fsw/platform_inc
 )

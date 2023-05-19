@@ -39,8 +39,8 @@
  * Necessary to include these here to get the definition of the
  * "{{cookiecutter.__app_slug_uc}}_Data_t" typedef.
  */
-#include "sample_app_events.h"
-#include "sample_app.h"
+#include "{{cookiecutter.__app_filename_slug}}_events.h"
+#include "{{cookiecutter.__app_filename_slug}}.h"
 
 /*
  * Allow UT access to the global "{{cookiecutter.__app_slug_uc}}_Data" object.

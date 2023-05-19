@@ -37,8 +37,8 @@
  */
 
 #include "sample_lib.h" /* For SAMPLE_LIB_Function */
-#include "sample_app_coveragetest_common.h"
-#include "ut_sample_app.h"
+#include "{{cookiecutter.__app_filename_slug}}_coveragetest_common.h"
+#include "ut_{{cookiecutter.__app_filename_slug}}.h"
 
 /*
  * Unit test check event hook information
