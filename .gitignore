@@ -1,6 +1,7 @@
 # Accidental Project stuff
 MyExample
 Reference
+Sample
 
 # Testing Folders
 test-envs
@@ -12,6 +13,7 @@ test-proj
 # backup files
 *.bak
 *.orig
+*~
 
 # Python Byte-compiled / optimized / DLL files
 __pycache__/

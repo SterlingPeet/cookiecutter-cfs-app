@@ -5,14 +5,14 @@
 # automatically for any template). To use it:
 #
 #    pip install cookiepatcher
-#    cookiepatcher gh:sterlingpeet/cookiecutter-fprime-deployment {{cookiecutter.deployment_slug}}
+#    cookiepatcher gh:sterlingpeet/cookiecutter-cfs-app {{cookiecutter.app_repo}}
 #
 # See:
 #    https://pypi.org/project/cookiepatcher
 #
 # Alternatively, you can run:
 #
-#    cookiecutter --overwrite-if-exists --config-file={{cookiecutter.deployment_slug}}/.cookiecutterrc gh:sterlingpeet/cookiecutter-fprime-deployment
+#    cookiecutter --overwrite-if-exists --config-file={{cookiecutter.app_repo}}/.cookiecutterrc gh:sterlingpeet/cookiecutter-cfs-app
 
 default_context:
 {% for key, value in cookiecutter.items()|sort %}
