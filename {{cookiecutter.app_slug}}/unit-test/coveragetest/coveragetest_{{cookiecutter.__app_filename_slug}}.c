@@ -17,7 +17,7 @@
  ************************************************************************/
 
 /*
-** File: coveragetest_sample_app.c
+** File: coveragetest_{{cookiecutter.__app_filename_slug}}.c
 **
 ** Purpose:
 ** Coverage Unit Test cases for the SAMPLE Application

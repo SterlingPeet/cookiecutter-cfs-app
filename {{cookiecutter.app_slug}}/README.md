@@ -1,4 +1,4 @@
-# {{cookiecutter.deployment_display_name}} F Prime Deployment
+# {{cookiecutter.app_display_name}} F Prime Deployment
 
 {{cookiecutter.dep_short_description}}
 {%- if cookiecutter.deployment_ref_doc_boilerplate == "yes" %}
@@ -14,9 +14,9 @@ Understanding the reference application has a few minimal prerequisites.
 
 Please follow the install guide for F´ found here: [INSTALL.md](../docs/INSTALL.md).
 
-## Building and Running the {{cookiecutter.deployment_display_name}} Application
+## Building and Running the {{cookiecutter.app_display_name}} Application
 
-In order to build the {{cookiecutter.deployment_display_name}} application, or any other F´ application, we first need to generate a build directory.  F´ uses CMake under the hood,
+In order to build the {{cookiecutter.app_display_name}} application, or any other F´ application, we first need to generate a build directory.  F´ uses CMake under the hood,
 which requires a directory to work in. To generate a build directory, we will use the `fprime-util` (a wrapper for CMake to streamline standard
 F´ processes). This can be done with the following commands:
 
@@ -27,16 +27,16 @@ fprime-util generate
 
 Now that the build directory has been generated, the user need not run `fprime-util generate` again unless the build directory has been removed.
 
-The next step is to build the {{cookiecutter.deployment_display_name}} application's code. This is done for the current system that the user is running on. This is handled by CMake
+The next step is to build the {{cookiecutter.app_display_name}} application's code. This is done for the current system that the user is running on. This is handled by CMake
 and will produce a binary that can be run on the user's system. This is accomplished by using the `build` subcommand of `fprime-util`.
 
 ## Running the F´ Ground System and Code
 
 F´ ships with a browser-based test ground system. This system is designed to help developers of F´
 projects quickly test and work with F´ code without much overhead. This ground system can be run
-with the following commands. Please note: the {{cookiecutter.deployment_display_name}} application's binary will also be run
+with the following commands. Please note: the {{cookiecutter.app_display_name}} application's binary will also be run
 automatically. This allows for quick testing on Linux and macOS. Before running the GDS, make sure
-that you have built the {{cookiecutter.deployment_display_name}} example.
+that you have built the {{cookiecutter.app_display_name}} example.
 
 ```
 cd {{cookiecutter.deployment_slug}}
@@ -44,19 +44,19 @@ fprime-gds
 ```
 
 The user may now explore the "Commanding", "Event", and "Channels" tabs to see the F´ code in action.  The "Logs" tab has logs for the running
-application should an error arise.  See: Logs -> Ref.log to see standard output of the {{cookiecutter.deployment_display_name}} app.
+application should an error arise.  See: Logs -> Ref.log to see standard output of the {{cookiecutter.app_display_name}} app.
 
-To run the ground system without starting the {{cookiecutter.deployment_display_name}} app:
+To run the ground system without starting the {{cookiecutter.app_display_name}} app:
 ```
 cd {{cookiecutter.deployment_slug}}
 fprime-gds --no-app
 ```
 
-The {{cookiecutter.deployment_display_name}} app may then be run independently from the created 'bin' directory.
+The {{cookiecutter.app_display_name}} app may then be run independently from the created 'bin' directory.
 
 ```
 cd fprime/{{cookiecutter.deployment_path}}/build-artifacts/<platform>/bin/
-./{{cookiecutter.deployment_display_name}} -a 127.0.0.1 -p 50000
+./{{cookiecutter.app_display_name}} -a 127.0.0.1 -p 50000
 ```
 
 ## Quick Tips

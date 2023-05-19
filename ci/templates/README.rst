@@ -25,10 +25,7 @@ Features
 --------
 
 * Working app created by running the Cookiecutter_.
-* Options to include or exclude several F Prime services, like health pinging.
 * Creates a single deployment-owned component, especially useful for excercising a utility component that is under development.
-* Choice of multiple target platforms for platform specific tweaks.
-* Option to generate an Arduino platfrom deployment.
 * Choice of various licenses.
 
 Requirements
@@ -47,7 +44,7 @@ in your shell or command prompt, within the ``venv`` environment::
 Usage and options
 -----------------
 
-This template is intended to make it easy to generate all the boilerplate required for a `F Prime`_ deployment and a single component internal to that deployment.
+This template is intended to make it easy to generate all the boilerplate required for a `cFS`_ app.
 A collection of components along with a mission/project configuration [deployment] completes the framework to fill out a robotic software project; e.g.: a balloon payload, an wheeled rover, or maybe a satellite.
 
 First navigate to the directory where you want to add your deployment.

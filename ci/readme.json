@@ -131,7 +131,7 @@
         },
         "license": {
             "default_value": "None",
-            "help": "License to use. Available options:\n\n        * None (no license text, assume project level license)\n        * BSD license\n        * MIT license\n\n        What license to pick? https://choosealicense.com/"
+            "help": "License to use. Available options:\n\n        * None (no license text, assume project level license)\n        * Apache 2.0 license\n        * BSD license\n        * MIT license\n\n        What license to pick? https://choosealicense.com/"
         },
         "internal_use": {
             "default_value": "default",

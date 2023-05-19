@@ -28,9 +28,9 @@
 #define {{cookiecutter.__app_slug_uc}}_MSGIDS_H
 
 /* V1 Command Message IDs must be 0x18xx */
-#define {{cookiecutter.__app_slug_uc}}_CMD_MID     0x1882
-#define {{cookiecutter.__app_slug_uc}}_SEND_HK_MID 0x1883
+#define {{cookiecutter.__app_slug_uc}}_CMD_MID     {{cookiecutter.app_cmd_mid}}
+#define {{cookiecutter.__app_slug_uc}}_SEND_HK_MID {{cookiecutter.app_send_hk_mid}}
 /* V1 Telemetry Message IDs must be 0x08xx */
-#define {{cookiecutter.__app_slug_uc}}_HK_TLM_MID 0x0883
+#define {{cookiecutter.__app_slug_uc}}_HK_TLM_MID {{cookiecutter.app_hk_tlm_mid}}
 
 #endif /* {{cookiecutter.__app_slug_uc}}_MSGIDS_H */

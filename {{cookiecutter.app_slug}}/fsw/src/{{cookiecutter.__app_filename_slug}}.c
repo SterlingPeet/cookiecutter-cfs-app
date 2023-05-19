@@ -18,7 +18,7 @@
 
 /**
  * \file
- *   This file contains the source code for the Sample App.
+ *   This file contains the source code for the {{cookiecutter.app_display_name}} App.
  */
 
 /*

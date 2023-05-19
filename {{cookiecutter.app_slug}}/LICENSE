@@ -1,4 +1,4 @@
-{{ cookiecutter.deployment_display_name }} F Prime Deployment
+{{ cookiecutter.app_display_name }} App for core Flight System
 
 Copyright <YEAR> {{ cookiecutter.full_name }}
 
