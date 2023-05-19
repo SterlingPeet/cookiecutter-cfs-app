@@ -19,11 +19,11 @@
 /**
  * @file
  *
- * Common definitions for all sample_app coverage tests
+ * Common definitions for all {{cookiecutter.__app_slug_uc}} coverage tests
  */
 
-#ifndef SAMPLE_APP_COVERAGETEST_COMMON_H
-#define SAMPLE_APP_COVERAGETEST_COMMON_H
+#ifndef {{cookiecutter.__app_slug_uc}}_COVERAGETEST_COMMON_H
+#define {{cookiecutter.__app_slug_uc}}_COVERAGETEST_COMMON_H
 
 /*
  * Includes
@@ -53,4 +53,4 @@ void Sample_UT_Setup(void);
  */
 void Sample_UT_TearDown(void);
 
-#endif /* SAMPLE_APP_COVERAGETEST_COMMON_H */
+#endif /* {{cookiecutter.__app_slug_uc}}_COVERAGETEST_COMMON_H */

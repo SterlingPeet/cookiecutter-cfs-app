@@ -22,16 +22,16 @@
  * Define SAMPLE App Events IDs
  */
 
-#ifndef SAMPLE_APP_EVENTS_H
-#define SAMPLE_APP_EVENTS_H
+#ifndef {{cookiecutter.__app_slug_uc}}_EVENTS_H
+#define {{cookiecutter.__app_slug_uc}}_EVENTS_H
 
-#define SAMPLE_APP_RESERVED_EID          0
-#define SAMPLE_APP_STARTUP_INF_EID       1
-#define SAMPLE_APP_COMMAND_ERR_EID       2
-#define SAMPLE_APP_COMMANDNOP_INF_EID    3
-#define SAMPLE_APP_COMMANDRST_INF_EID    4
-#define SAMPLE_APP_INVALID_MSGID_ERR_EID 5
-#define SAMPLE_APP_LEN_ERR_EID           6
-#define SAMPLE_APP_PIPE_ERR_EID          7
+#define {{cookiecutter.__app_slug_uc}}_RESERVED_EID          0
+#define {{cookiecutter.__app_slug_uc}}_STARTUP_INF_EID       1
+#define {{cookiecutter.__app_slug_uc}}_COMMAND_ERR_EID       2
+#define {{cookiecutter.__app_slug_uc}}_COMMANDNOP_INF_EID    3
+#define {{cookiecutter.__app_slug_uc}}_COMMANDRST_INF_EID    4
+#define {{cookiecutter.__app_slug_uc}}_INVALID_MSGID_ERR_EID 5
+#define {{cookiecutter.__app_slug_uc}}_LEN_ERR_EID           6
+#define {{cookiecutter.__app_slug_uc}}_PIPE_ERR_EID          7
 
-#endif /* SAMPLE_APP_EVENTS_H */
+#endif /* {{cookiecutter.__app_slug_uc}}_EVENTS_H */

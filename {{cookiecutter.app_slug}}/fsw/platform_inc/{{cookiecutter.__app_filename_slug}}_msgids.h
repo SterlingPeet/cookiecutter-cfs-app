@@ -24,13 +24,13 @@
  * \note The Sample App assumes default configuration which uses V1 of message id implementation
  */
 
-#ifndef SAMPLE_APP_MSGIDS_H
-#define SAMPLE_APP_MSGIDS_H
+#ifndef {{cookiecutter.__app_slug_uc}}_MSGIDS_H
+#define {{cookiecutter.__app_slug_uc}}_MSGIDS_H
 
 /* V1 Command Message IDs must be 0x18xx */
-#define SAMPLE_APP_CMD_MID     0x1882
-#define SAMPLE_APP_SEND_HK_MID 0x1883
+#define {{cookiecutter.__app_slug_uc}}_CMD_MID     0x1882
+#define {{cookiecutter.__app_slug_uc}}_SEND_HK_MID 0x1883
 /* V1 Telemetry Message IDs must be 0x08xx */
-#define SAMPLE_APP_HK_TLM_MID 0x0883
+#define {{cookiecutter.__app_slug_uc}}_HK_TLM_MID 0x0883
 
-#endif /* SAMPLE_APP_MSGIDS_H */
+#endif /* {{cookiecutter.__app_slug_uc}}_MSGIDS_H */

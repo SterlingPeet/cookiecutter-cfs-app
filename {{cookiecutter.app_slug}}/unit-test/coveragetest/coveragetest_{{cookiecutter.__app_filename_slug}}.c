@@ -143,26 +143,26 @@ static void UT_CheckEvent_Setup_Impl(UT_CheckEvent_t *Evt, uint16 ExpectedEvent,
 **********************************************************************************
 */
 
-void Test_SAMPLE_APP_Main(void)
+void Test_{{cookiecutter.__app_slug_uc}}_Main(void)
 {
     CFE_SB_MsgId_t MsgId = CFE_SB_INVALID_MSG_ID;
 
     /*
      * Test Case For:
-     * void SAMPLE_APP_Main( void )
+     * void {{cookiecutter.__app_slug_uc}}_Main( void )
      */
 
     UT_CheckEvent_t EventTest;
 
     /*
-     * SAMPLE_APP_Main does not return a value,
+     * {{cookiecutter.__app_slug_uc}}_Main does not return a value,
      * but it has several internal decision points
      * that need to be exercised here.
      *
      * First call it in "nominal" mode where all
      * dependent calls should be successful by default.
      */
-    SAMPLE_APP_Main();
+    {{cookiecutter.__app_slug_uc}}_Main();
 
     /*
      * Confirm that CFE_ES_ExitApp() was called at the end of execution
@@ -171,7 +171,7 @@ void Test_SAMPLE_APP_Main(void)
 
     /*
      * Now set up individual cases for each of the error paths.
-     * The first is for SAMPLE_APP_Init().  As this is in the same
+     * The first is for {{cookiecutter.__app_slug_uc}}_Init().  As this is in the same
      * code unit, it is not a stub where the return code can be
      * easily set.  In order to get this to fail, an underlying
      * call needs to fail, and the error gets propagated through.
@@ -184,15 +184,15 @@ void Test_SAMPLE_APP_Main(void)
      * Just call the function again.  It does not return
      * the value, so there is nothing to test for here directly.
      * However, it should show up in the coverage report that
-     * the SAMPLE_APP_Init() failure path was taken.
+     * the {{cookiecutter.__app_slug_uc}}_Init() failure path was taken.
      */
-    SAMPLE_APP_Main();
+    {{cookiecutter.__app_slug_uc}}_Main();
 
     /*
      * This can validate that the internal "RunStatus" was
      * set to CFE_ES_RunStatus_APP_ERROR, by querying the struct directly.
      */
-    UtAssert_UINT32_EQ(SAMPLE_APP_Data.RunStatus, CFE_ES_RunStatus_APP_ERROR);
+    UtAssert_UINT32_EQ({{cookiecutter.__app_slug_uc}}_Data.RunStatus, CFE_ES_RunStatus_APP_ERROR);
 
     /*
      * Note that CFE_ES_RunLoop returns a boolean value,
@@ -211,7 +211,7 @@ void Test_SAMPLE_APP_Main(void)
     /*
      * Invoke again
      */
-    SAMPLE_APP_Main();
+    {{cookiecutter.__app_slug_uc}}_Main();
 
     /*
      * Confirm that CFE_SB_ReceiveBuffer() (inside the loop) was called
@@ -225,12 +225,12 @@ void Test_SAMPLE_APP_Main(void)
      */
     UT_SetDeferredRetcode(UT_KEY(CFE_ES_RunLoop), 1, true);
     UT_SetDeferredRetcode(UT_KEY(CFE_SB_ReceiveBuffer), 1, CFE_SB_PIPE_RD_ERR);
-    UT_CHECKEVENT_SETUP(&EventTest, SAMPLE_APP_PIPE_ERR_EID, "SAMPLE APP: SB Pipe Read Error, App Will Exit");
+    UT_CHECKEVENT_SETUP(&EventTest, {{cookiecutter.__app_slug_uc}}_PIPE_ERR_EID, "SAMPLE APP: SB Pipe Read Error, App Will Exit");
 
     /*
      * Invoke again
      */
-    SAMPLE_APP_Main();
+    {{cookiecutter.__app_slug_uc}}_Main();
 
     /*
      * Confirm that the event was generated
@@ -238,52 +238,52 @@ void Test_SAMPLE_APP_Main(void)
     UtAssert_UINT32_EQ(EventTest.MatchCount, 1);
 }
 
-void Test_SAMPLE_APP_Init(void)
+void Test_{{cookiecutter.__app_slug_uc}}_Init(void)
 {
     /*
      * Test Case For:
-     * int32 SAMPLE_APP_Init( void )
+     * int32 {{cookiecutter.__app_slug_uc}}_Init( void )
      */
 
     /* nominal case should return CFE_SUCCESS */
-    UtAssert_INT32_EQ(SAMPLE_APP_Init(), CFE_SUCCESS);
+    UtAssert_INT32_EQ({{cookiecutter.__app_slug_uc}}_Init(), CFE_SUCCESS);
 
     /* trigger a failure for each of the sub-calls,
      * and confirm a write to syslog for each.
      * Note that this count accumulates, because the status
      * is _not_ reset between these test cases. */
     UT_SetDeferredRetcode(UT_KEY(CFE_EVS_Register), 1, CFE_EVS_INVALID_PARAMETER);
-    UtAssert_INT32_EQ(SAMPLE_APP_Init(), CFE_EVS_INVALID_PARAMETER);
+    UtAssert_INT32_EQ({{cookiecutter.__app_slug_uc}}_Init(), CFE_EVS_INVALID_PARAMETER);
     UtAssert_STUB_COUNT(CFE_ES_WriteToSysLog, 1);
 
     UT_SetDeferredRetcode(UT_KEY(CFE_SB_CreatePipe), 1, CFE_SB_BAD_ARGUMENT);
-    UtAssert_INT32_EQ(SAMPLE_APP_Init(), CFE_SB_BAD_ARGUMENT);
+    UtAssert_INT32_EQ({{cookiecutter.__app_slug_uc}}_Init(), CFE_SB_BAD_ARGUMENT);
     UtAssert_STUB_COUNT(CFE_ES_WriteToSysLog, 2);
 
     UT_SetDeferredRetcode(UT_KEY(CFE_SB_Subscribe), 1, CFE_SB_BAD_ARGUMENT);
-    UtAssert_INT32_EQ(SAMPLE_APP_Init(), CFE_SB_BAD_ARGUMENT);
+    UtAssert_INT32_EQ({{cookiecutter.__app_slug_uc}}_Init(), CFE_SB_BAD_ARGUMENT);
     UtAssert_STUB_COUNT(CFE_ES_WriteToSysLog, 3);
 
     UT_SetDeferredRetcode(UT_KEY(CFE_SB_Subscribe), 2, CFE_SB_BAD_ARGUMENT);
-    UtAssert_INT32_EQ(SAMPLE_APP_Init(), CFE_SB_BAD_ARGUMENT);
+    UtAssert_INT32_EQ({{cookiecutter.__app_slug_uc}}_Init(), CFE_SB_BAD_ARGUMENT);
     UtAssert_STUB_COUNT(CFE_ES_WriteToSysLog, 4);
 
     UT_SetDeferredRetcode(UT_KEY(CFE_TBL_Register), 1, CFE_TBL_ERR_INVALID_OPTIONS);
-    UtAssert_INT32_EQ(SAMPLE_APP_Init(), CFE_TBL_ERR_INVALID_OPTIONS);
+    UtAssert_INT32_EQ({{cookiecutter.__app_slug_uc}}_Init(), CFE_TBL_ERR_INVALID_OPTIONS);
     UtAssert_STUB_COUNT(CFE_ES_WriteToSysLog, 5);
 }
 
-void Test_SAMPLE_APP_ProcessCommandPacket(void)
+void Test_{{cookiecutter.__app_slug_uc}}_ProcessCommandPacket(void)
 {
     /*
      * Test Case For:
-     * void SAMPLE_APP_ProcessCommandPacket
+     * void {{cookiecutter.__app_slug_uc}}_ProcessCommandPacket
      */
     /* a buffer large enough for any command message */
     union
     {
         CFE_SB_Buffer_t      SBBuf;
-        SAMPLE_APP_NoopCmd_t Noop;
+        {{cookiecutter.__app_slug_uc}}_NoopCmd_t Noop;
     } TestMsg;
     CFE_SB_MsgId_t    TestMsgId;
     CFE_MSG_FcnCode_t FcnCode;
@@ -291,28 +291,28 @@ void Test_SAMPLE_APP_ProcessCommandPacket(void)
     UT_CheckEvent_t   EventTest;
 
     memset(&TestMsg, 0, sizeof(TestMsg));
-    UT_CHECKEVENT_SETUP(&EventTest, SAMPLE_APP_INVALID_MSGID_ERR_EID, "SAMPLE: invalid command packet,MID = 0x%x");
+    UT_CHECKEVENT_SETUP(&EventTest, {{cookiecutter.__app_slug_uc}}_INVALID_MSGID_ERR_EID, "SAMPLE: invalid command packet,MID = 0x%x");
 
     /*
      * The CFE_MSG_GetMsgId() stub uses a data buffer to hold the
      * message ID values to return.
      */
-    TestMsgId = CFE_SB_ValueToMsgId(SAMPLE_APP_CMD_MID);
-    FcnCode   = SAMPLE_APP_NOOP_CC;
+    TestMsgId = CFE_SB_ValueToMsgId({{cookiecutter.__app_slug_uc}}_CMD_MID);
+    FcnCode   = {{cookiecutter.__app_slug_uc}}_NOOP_CC;
     MsgSize   = sizeof(TestMsg.Noop);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &TestMsgId, sizeof(TestMsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &MsgSize, sizeof(MsgSize), false);
-    SAMPLE_APP_ProcessCommandPacket(&TestMsg.SBBuf);
+    {{cookiecutter.__app_slug_uc}}_ProcessCommandPacket(&TestMsg.SBBuf);
 
-    TestMsgId = CFE_SB_ValueToMsgId(SAMPLE_APP_SEND_HK_MID);
+    TestMsgId = CFE_SB_ValueToMsgId({{cookiecutter.__app_slug_uc}}_SEND_HK_MID);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &TestMsgId, sizeof(TestMsgId), false);
-    SAMPLE_APP_ProcessCommandPacket(&TestMsg.SBBuf);
+    {{cookiecutter.__app_slug_uc}}_ProcessCommandPacket(&TestMsg.SBBuf);
 
     /* invalid message id */
     TestMsgId = CFE_SB_INVALID_MSG_ID;
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &TestMsgId, sizeof(TestMsgId), false);
-    SAMPLE_APP_ProcessCommandPacket(&TestMsg.SBBuf);
+    {{cookiecutter.__app_slug_uc}}_ProcessCommandPacket(&TestMsg.SBBuf);
 
     /*
      * Confirm that the event was generated only _once_
@@ -320,11 +320,11 @@ void Test_SAMPLE_APP_ProcessCommandPacket(void)
     UtAssert_UINT32_EQ(EventTest.MatchCount, 1);
 }
 
-void Test_SAMPLE_APP_ProcessGroundCommand(void)
+void Test_{{cookiecutter.__app_slug_uc}}_ProcessGroundCommand(void)
 {
     /*
      * Test Case For:
-     * void SAMPLE_APP_ProcessGroundCommand
+     * void {{cookiecutter.__app_slug_uc}}_ProcessGroundCommand
      */
     CFE_MSG_FcnCode_t FcnCode;
     size_t            Size;
@@ -333,9 +333,9 @@ void Test_SAMPLE_APP_ProcessGroundCommand(void)
     union
     {
         CFE_SB_Buffer_t               SBBuf;
-        SAMPLE_APP_NoopCmd_t          Noop;
-        SAMPLE_APP_ResetCountersCmd_t Reset;
-        SAMPLE_APP_ProcessCmd_t       Process;
+        {{cookiecutter.__app_slug_uc}}_NoopCmd_t          Noop;
+        {{cookiecutter.__app_slug_uc}}_ResetCountersCmd_t Reset;
+        {{cookiecutter.__app_slug_uc}}_ProcessCmd_t       Process;
     } TestMsg;
     UT_CheckEvent_t EventTest;
 
@@ -351,43 +351,43 @@ void Test_SAMPLE_APP_ProcessGroundCommand(void)
      */
 
     /* test dispatch of NOOP */
-    FcnCode = SAMPLE_APP_NOOP_CC;
+    FcnCode = {{cookiecutter.__app_slug_uc}}_NOOP_CC;
     Size    = sizeof(TestMsg.Noop);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
-    UT_CHECKEVENT_SETUP(&EventTest, SAMPLE_APP_COMMANDNOP_INF_EID, NULL);
+    UT_CHECKEVENT_SETUP(&EventTest, {{cookiecutter.__app_slug_uc}}_COMMANDNOP_INF_EID, NULL);
 
-    SAMPLE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
+    {{cookiecutter.__app_slug_uc}}_ProcessGroundCommand(&TestMsg.SBBuf);
 
     UtAssert_UINT32_EQ(EventTest.MatchCount, 1);
 
     /* test dispatch of RESET */
-    FcnCode = SAMPLE_APP_RESET_COUNTERS_CC;
+    FcnCode = {{cookiecutter.__app_slug_uc}}_RESET_COUNTERS_CC;
     Size    = sizeof(TestMsg.Reset);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
-    UT_CHECKEVENT_SETUP(&EventTest, SAMPLE_APP_COMMANDRST_INF_EID, NULL);
+    UT_CHECKEVENT_SETUP(&EventTest, {{cookiecutter.__app_slug_uc}}_COMMANDRST_INF_EID, NULL);
 
-    SAMPLE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
+    {{cookiecutter.__app_slug_uc}}_ProcessGroundCommand(&TestMsg.SBBuf);
 
     UtAssert_UINT32_EQ(EventTest.MatchCount, 1);
 
     /* test dispatch of PROCESS */
-    /* note this will end up calling SAMPLE_APP_Process(), and as such it needs to
+    /* note this will end up calling {{cookiecutter.__app_slug_uc}}_Process(), and as such it needs to
      * avoid dereferencing a table which does not exist. */
-    FcnCode = SAMPLE_APP_PROCESS_CC;
+    FcnCode = {{cookiecutter.__app_slug_uc}}_PROCESS_CC;
     Size    = sizeof(TestMsg.Process);
     UT_SetDefaultReturnValue(UT_KEY(CFE_TBL_GetAddress), CFE_TBL_ERR_UNREGISTERED);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
 
-    SAMPLE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
+    {{cookiecutter.__app_slug_uc}}_ProcessGroundCommand(&TestMsg.SBBuf);
 
     /* test an invalid CC */
     FcnCode = 1000;
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
-    UT_CHECKEVENT_SETUP(&EventTest, SAMPLE_APP_COMMAND_ERR_EID, "Invalid ground command code: CC = %d");
-    SAMPLE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
+    UT_CHECKEVENT_SETUP(&EventTest, {{cookiecutter.__app_slug_uc}}_COMMAND_ERR_EID, "Invalid ground command code: CC = %d");
+    {{cookiecutter.__app_slug_uc}}_ProcessGroundCommand(&TestMsg.SBBuf);
 
     /*
      * Confirm that the event was generated only _once_
@@ -395,17 +395,17 @@ void Test_SAMPLE_APP_ProcessGroundCommand(void)
     UtAssert_UINT32_EQ(EventTest.MatchCount, 1);
 }
 
-void Test_SAMPLE_APP_ReportHousekeeping(void)
+void Test_{{cookiecutter.__app_slug_uc}}_ReportHousekeeping(void)
 {
     /*
      * Test Case For:
-     * void SAMPLE_APP_ReportHousekeeping( const CFE_SB_CmdHdr_t *Msg )
+     * void {{cookiecutter.__app_slug_uc}}_ReportHousekeeping( const CFE_SB_CmdHdr_t *Msg )
      */
     CFE_MSG_Message_t *MsgSend;
     CFE_MSG_Message_t *MsgTimestamp;
-    CFE_SB_MsgId_t     MsgId = CFE_SB_ValueToMsgId(SAMPLE_APP_SEND_HK_MID);
+    CFE_SB_MsgId_t     MsgId = CFE_SB_ValueToMsgId({{cookiecutter.__app_slug_uc}}_SEND_HK_MID);
 
-    /* Set message id to return so SAMPLE_APP_Housekeeping will be called */
+    /* Set message id to return so {{cookiecutter.__app_slug_uc}}_Housekeeping will be called */
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
 
     /* Set up to capture send message address */
@@ -415,15 +415,15 @@ void Test_SAMPLE_APP_ReportHousekeeping(void)
     UT_SetDataBuffer(UT_KEY(CFE_SB_TimeStampMsg), &MsgTimestamp, sizeof(MsgTimestamp), false);
 
     /* Call unit under test, NULL pointer confirms command access is through APIs */
-    SAMPLE_APP_ProcessCommandPacket((CFE_SB_Buffer_t *)NULL);
+    {{cookiecutter.__app_slug_uc}}_ProcessCommandPacket((CFE_SB_Buffer_t *)NULL);
 
     /* Confirm message sent*/
     UtAssert_STUB_COUNT(CFE_SB_TransmitMsg, 1);
-    UtAssert_ADDRESS_EQ(MsgSend, &SAMPLE_APP_Data.HkTlm);
+    UtAssert_ADDRESS_EQ(MsgSend, &{{cookiecutter.__app_slug_uc}}_Data.HkTlm);
 
     /* Confirm timestamp msg address */
     UtAssert_STUB_COUNT(CFE_SB_TimeStampMsg, 1);
-    UtAssert_ADDRESS_EQ(MsgTimestamp, &SAMPLE_APP_Data.HkTlm);
+    UtAssert_ADDRESS_EQ(MsgTimestamp, &{{cookiecutter.__app_slug_uc}}_Data.HkTlm);
 
     /*
      * Confirm that the CFE_TBL_Manage() call was done
@@ -431,21 +431,21 @@ void Test_SAMPLE_APP_ReportHousekeeping(void)
     UtAssert_STUB_COUNT(CFE_TBL_Manage, 1);
 }
 
-void Test_SAMPLE_APP_NoopCmd(void)
+void Test_{{cookiecutter.__app_slug_uc}}_NoopCmd(void)
 {
     /*
      * Test Case For:
-     * void SAMPLE_APP_NoopCmd( const SAMPLE_APP_Noop_t *Msg )
+     * void {{cookiecutter.__app_slug_uc}}_NoopCmd( const {{cookiecutter.__app_slug_uc}}_Noop_t *Msg )
      */
-    SAMPLE_APP_NoopCmd_t TestMsg;
+    {{cookiecutter.__app_slug_uc}}_NoopCmd_t TestMsg;
     UT_CheckEvent_t      EventTest;
 
     memset(&TestMsg, 0, sizeof(TestMsg));
 
     /* test dispatch of NOOP */
-    UT_CHECKEVENT_SETUP(&EventTest, SAMPLE_APP_COMMANDNOP_INF_EID, NULL);
+    UT_CHECKEVENT_SETUP(&EventTest, {{cookiecutter.__app_slug_uc}}_COMMANDNOP_INF_EID, NULL);
 
-    UtAssert_INT32_EQ(SAMPLE_APP_Noop(&TestMsg), CFE_SUCCESS);
+    UtAssert_INT32_EQ({{cookiecutter.__app_slug_uc}}_Noop(&TestMsg), CFE_SUCCESS);
 
     /*
      * Confirm that the event was generated
@@ -453,20 +453,20 @@ void Test_SAMPLE_APP_NoopCmd(void)
     UtAssert_UINT32_EQ(EventTest.MatchCount, 1);
 }
 
-void Test_SAMPLE_APP_ResetCounters(void)
+void Test_{{cookiecutter.__app_slug_uc}}_ResetCounters(void)
 {
     /*
      * Test Case For:
-     * void SAMPLE_APP_ResetCounters( const SAMPLE_APP_ResetCounters_t *Msg )
+     * void {{cookiecutter.__app_slug_uc}}_ResetCounters( const {{cookiecutter.__app_slug_uc}}_ResetCounters_t *Msg )
      */
-    SAMPLE_APP_ResetCountersCmd_t TestMsg;
+    {{cookiecutter.__app_slug_uc}}_ResetCountersCmd_t TestMsg;
     UT_CheckEvent_t               EventTest;
 
     memset(&TestMsg, 0, sizeof(TestMsg));
 
-    UT_CHECKEVENT_SETUP(&EventTest, SAMPLE_APP_COMMANDRST_INF_EID, "SAMPLE: RESET command");
+    UT_CHECKEVENT_SETUP(&EventTest, {{cookiecutter.__app_slug_uc}}_COMMANDRST_INF_EID, "SAMPLE: RESET command");
 
-    UtAssert_INT32_EQ(SAMPLE_APP_ResetCounters(&TestMsg), CFE_SUCCESS);
+    UtAssert_INT32_EQ({{cookiecutter.__app_slug_uc}}_ResetCounters(&TestMsg), CFE_SUCCESS);
 
     /*
      * Confirm that the event was generated
@@ -474,24 +474,24 @@ void Test_SAMPLE_APP_ResetCounters(void)
     UtAssert_UINT32_EQ(EventTest.MatchCount, 1);
 }
 
-void Test_SAMPLE_APP_ProcessCC(void)
+void Test_{{cookiecutter.__app_slug_uc}}_ProcessCC(void)
 {
     /*
      * Test Case For:
-     * void  SAMPLE_APP_ProcessCC( const SAMPLE_APP_Process_t *Msg )
+     * void  {{cookiecutter.__app_slug_uc}}_ProcessCC( const {{cookiecutter.__app_slug_uc}}_Process_t *Msg )
      */
-    SAMPLE_APP_ProcessCmd_t TestMsg;
-    SAMPLE_APP_Table_t      TestTblData;
+    {{cookiecutter.__app_slug_uc}}_ProcessCmd_t TestMsg;
+    {{cookiecutter.__app_slug_uc}}_Table_t      TestTblData;
     void *                  TblPtr = &TestTblData;
 
     memset(&TestTblData, 0, sizeof(TestTblData));
     memset(&TestMsg, 0, sizeof(TestMsg));
 
-    /* Provide some table data for the SAMPLE_APP_Process() function to use */
+    /* Provide some table data for the {{cookiecutter.__app_slug_uc}}_Process() function to use */
     TestTblData.Int1 = 40;
     TestTblData.Int2 = 50;
     UT_SetDataBuffer(UT_KEY(CFE_TBL_GetAddress), &TblPtr, sizeof(TblPtr), false);
-    UtAssert_INT32_EQ(SAMPLE_APP_Process(&TestMsg), CFE_SUCCESS);
+    UtAssert_INT32_EQ({{cookiecutter.__app_slug_uc}}_Process(&TestMsg), CFE_SUCCESS);
 
     /*
      * Confirm that the CFE_TBL_GetAddress() call was done
@@ -509,14 +509,14 @@ void Test_SAMPLE_APP_ProcessCC(void)
      * Exercise the error return path
      */
     UT_SetDefaultReturnValue(UT_KEY(CFE_TBL_GetAddress), CFE_TBL_ERR_UNREGISTERED);
-    UtAssert_INT32_EQ(SAMPLE_APP_Process(&TestMsg), CFE_TBL_ERR_UNREGISTERED);
+    UtAssert_INT32_EQ({{cookiecutter.__app_slug_uc}}_Process(&TestMsg), CFE_TBL_ERR_UNREGISTERED);
 }
 
-void Test_SAMPLE_APP_VerifyCmdLength(void)
+void Test_{{cookiecutter.__app_slug_uc}}_VerifyCmdLength(void)
 {
     /*
      * Test Case For:
-     * bool SAMPLE_APP_VerifyCmdLength
+     * bool {{cookiecutter.__app_slug_uc}}_VerifyCmdLength
      */
     UT_CheckEvent_t   EventTest;
     size_t            size    = 1;
@@ -527,10 +527,10 @@ void Test_SAMPLE_APP_VerifyCmdLength(void)
      * test a match case
      */
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &size, sizeof(size), false);
-    UT_CHECKEVENT_SETUP(&EventTest, SAMPLE_APP_LEN_ERR_EID,
+    UT_CHECKEVENT_SETUP(&EventTest, {{cookiecutter.__app_slug_uc}}_LEN_ERR_EID,
                         "Invalid Msg length: ID = 0x%X,  CC = %u, Len = %u, Expected = %u");
 
-    SAMPLE_APP_VerifyCmdLength(NULL, size);
+    {{cookiecutter.__app_slug_uc}}_VerifyCmdLength(NULL, size);
 
     /*
      * Confirm that the event was NOT generated
@@ -543,7 +543,7 @@ void Test_SAMPLE_APP_VerifyCmdLength(void)
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &size, sizeof(size), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &msgid, sizeof(msgid), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &fcncode, sizeof(fcncode), false);
-    SAMPLE_APP_VerifyCmdLength(NULL, size + 1);
+    {{cookiecutter.__app_slug_uc}}_VerifyCmdLength(NULL, size + 1);
 
     /*
      * Confirm that the event WAS generated
@@ -551,29 +551,29 @@ void Test_SAMPLE_APP_VerifyCmdLength(void)
     UtAssert_UINT32_EQ(EventTest.MatchCount, 1);
 }
 
-void Test_SAMPLE_APP_TblValidationFunc(void)
+void Test_{{cookiecutter.__app_slug_uc}}_TblValidationFunc(void)
 {
     /*
      * Test Case For:
-     * int32 SAMPLE_APP_TblValidationFunc( void *TblData )
+     * int32 {{cookiecutter.__app_slug_uc}}_TblValidationFunc( void *TblData )
      */
-    SAMPLE_APP_Table_t TestTblData;
+    {{cookiecutter.__app_slug_uc}}_Table_t TestTblData;
 
     memset(&TestTblData, 0, sizeof(TestTblData));
 
     /* nominal case (0) should succeed */
-    UtAssert_INT32_EQ(SAMPLE_APP_TblValidationFunc(&TestTblData), CFE_SUCCESS);
+    UtAssert_INT32_EQ({{cookiecutter.__app_slug_uc}}_TblValidationFunc(&TestTblData), CFE_SUCCESS);
 
-    /* error case should return SAMPLE_APP_TABLE_OUT_OF_RANGE_ERR_CODE */
-    TestTblData.Int1 = 1 + SAMPLE_APP_TBL_ELEMENT_1_MAX;
-    UtAssert_INT32_EQ(SAMPLE_APP_TblValidationFunc(&TestTblData), SAMPLE_APP_TABLE_OUT_OF_RANGE_ERR_CODE);
+    /* error case should return {{cookiecutter.__app_slug_uc}}_TABLE_OUT_OF_RANGE_ERR_CODE */
+    TestTblData.Int1 = 1 + {{cookiecutter.__app_slug_uc}}_TBL_ELEMENT_1_MAX;
+    UtAssert_INT32_EQ({{cookiecutter.__app_slug_uc}}_TblValidationFunc(&TestTblData), {{cookiecutter.__app_slug_uc}}_TABLE_OUT_OF_RANGE_ERR_CODE);
 }
 
-void Test_SAMPLE_APP_GetCrc(void)
+void Test_{{cookiecutter.__app_slug_uc}}_GetCrc(void)
 {
     /*
      * Test Case For:
-     * void SAMPLE_APP_GetCrc( const char *TableName )
+     * void {{cookiecutter.__app_slug_uc}}_GetCrc( const char *TableName )
      */
 
     /*
@@ -586,11 +586,11 @@ void Test_SAMPLE_APP_GetCrc(void)
      */
 
     UT_SetDefaultReturnValue(UT_KEY(CFE_TBL_GetInfo), CFE_TBL_ERR_INVALID_NAME);
-    SAMPLE_APP_GetCrc("UT");
+    {{cookiecutter.__app_slug_uc}}_GetCrc("UT");
     UtAssert_STUB_COUNT(CFE_ES_WriteToSysLog, 1);
 
     UT_ClearDefaultReturnValue(UT_KEY(CFE_TBL_GetInfo));
-    SAMPLE_APP_GetCrc("UT");
+    {{cookiecutter.__app_slug_uc}}_GetCrc("UT");
     UtAssert_STUB_COUNT(CFE_ES_WriteToSysLog, 2);
 }
 
@@ -612,15 +612,15 @@ void Sample_UT_TearDown(void) {}
  */
 void UtTest_Setup(void)
 {
-    ADD_TEST(SAMPLE_APP_Main);
-    ADD_TEST(SAMPLE_APP_Init);
-    ADD_TEST(SAMPLE_APP_ProcessCommandPacket);
-    ADD_TEST(SAMPLE_APP_ProcessGroundCommand);
-    ADD_TEST(SAMPLE_APP_ReportHousekeeping);
-    ADD_TEST(SAMPLE_APP_NoopCmd);
-    ADD_TEST(SAMPLE_APP_ResetCounters);
-    ADD_TEST(SAMPLE_APP_ProcessCC);
-    ADD_TEST(SAMPLE_APP_VerifyCmdLength);
-    ADD_TEST(SAMPLE_APP_TblValidationFunc);
-    ADD_TEST(SAMPLE_APP_GetCrc);
+    ADD_TEST({{cookiecutter.__app_slug_uc}}_Main);
+    ADD_TEST({{cookiecutter.__app_slug_uc}}_Init);
+    ADD_TEST({{cookiecutter.__app_slug_uc}}_ProcessCommandPacket);
+    ADD_TEST({{cookiecutter.__app_slug_uc}}_ProcessGroundCommand);
+    ADD_TEST({{cookiecutter.__app_slug_uc}}_ReportHousekeeping);
+    ADD_TEST({{cookiecutter.__app_slug_uc}}_NoopCmd);
+    ADD_TEST({{cookiecutter.__app_slug_uc}}_ResetCounters);
+    ADD_TEST({{cookiecutter.__app_slug_uc}}_ProcessCC);
+    ADD_TEST({{cookiecutter.__app_slug_uc}}_VerifyCmdLength);
+    ADD_TEST({{cookiecutter.__app_slug_uc}}_TblValidationFunc);
+    ADD_TEST({{cookiecutter.__app_slug_uc}}_GetCrc);
 }

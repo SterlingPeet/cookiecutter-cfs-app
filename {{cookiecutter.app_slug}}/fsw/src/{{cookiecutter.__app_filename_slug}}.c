@@ -24,10 +24,10 @@
 /*
 ** Include Files:
 */
-#include "sample_app_events.h"
-#include "sample_app_version.h"
-#include "sample_app.h"
-#include "sample_app_table.h"
+#include "{{cookiecutter.__app_filename_slug}}_events.h"
+#include "{{cookiecutter.__app_filename_slug}}_version.h"
+#include "{{cookiecutter.__app_filename_slug}}.h"
+#include "{{cookiecutter.__app_filename_slug}}_table.h"
 
 /* The sample_lib module provides the SAMPLE_LIB_Function() prototype */
 #include <string.h>
@@ -36,14 +36,14 @@
 /*
 ** global data
 */
-SAMPLE_APP_Data_t SAMPLE_APP_Data;
+{{cookiecutter.__app_slug_uc}}_Data_t {{cookiecutter.__app_slug_uc}}_Data;
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * *  * * * * **/
 /*                                                                            */
 /* Application entry point and main process loop                              */
 /*                                                                            */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * *  * * * * **/
-void SAMPLE_APP_Main(void)
+void {{cookiecutter.__app_slug_uc}}_Main(void)
 {
     int32            status;
     CFE_SB_Buffer_t *SBBufPtr;
@@ -51,56 +51,56 @@ void SAMPLE_APP_Main(void)
     /*
     ** Create the first Performance Log entry
     */
-    CFE_ES_PerfLogEntry(SAMPLE_APP_PERF_ID);
+    CFE_ES_PerfLogEntry({{cookiecutter.__app_slug_uc}}_PERF_ID);
 
     /*
     ** Perform application specific initialization
     ** If the Initialization fails, set the RunStatus to
     ** CFE_ES_RunStatus_APP_ERROR and the App will not enter the RunLoop
     */
-    status = SAMPLE_APP_Init();
+    status = {{cookiecutter.__app_slug_uc}}_Init();
     if (status != CFE_SUCCESS)
     {
-        SAMPLE_APP_Data.RunStatus = CFE_ES_RunStatus_APP_ERROR;
+        {{cookiecutter.__app_slug_uc}}_Data.RunStatus = CFE_ES_RunStatus_APP_ERROR;
     }
 
     /*
     ** SAMPLE Runloop
     */
-    while (CFE_ES_RunLoop(&SAMPLE_APP_Data.RunStatus) == true)
+    while (CFE_ES_RunLoop(&{{cookiecutter.__app_slug_uc}}_Data.RunStatus) == true)
     {
         /*
         ** Performance Log Exit Stamp
         */
-        CFE_ES_PerfLogExit(SAMPLE_APP_PERF_ID);
+        CFE_ES_PerfLogExit({{cookiecutter.__app_slug_uc}}_PERF_ID);
 
         /* Pend on receipt of command packet */
-        status = CFE_SB_ReceiveBuffer(&SBBufPtr, SAMPLE_APP_Data.CommandPipe, CFE_SB_PEND_FOREVER);
+        status = CFE_SB_ReceiveBuffer(&SBBufPtr, {{cookiecutter.__app_slug_uc}}_Data.CommandPipe, CFE_SB_PEND_FOREVER);
 
         /*
         ** Performance Log Entry Stamp
         */
-        CFE_ES_PerfLogEntry(SAMPLE_APP_PERF_ID);
+        CFE_ES_PerfLogEntry({{cookiecutter.__app_slug_uc}}_PERF_ID);
 
         if (status == CFE_SUCCESS)
         {
-            SAMPLE_APP_ProcessCommandPacket(SBBufPtr);
+            {{cookiecutter.__app_slug_uc}}_ProcessCommandPacket(SBBufPtr);
         }
         else
         {
-            CFE_EVS_SendEvent(SAMPLE_APP_PIPE_ERR_EID, CFE_EVS_EventType_ERROR,
+            CFE_EVS_SendEvent({{cookiecutter.__app_slug_uc}}_PIPE_ERR_EID, CFE_EVS_EventType_ERROR,
                               "SAMPLE APP: SB Pipe Read Error, App Will Exit");
 
-            SAMPLE_APP_Data.RunStatus = CFE_ES_RunStatus_APP_ERROR;
+            {{cookiecutter.__app_slug_uc}}_Data.RunStatus = CFE_ES_RunStatus_APP_ERROR;
         }
     }
 
     /*
     ** Performance Log Exit Stamp
     */
-    CFE_ES_PerfLogExit(SAMPLE_APP_PERF_ID);
+    CFE_ES_PerfLogExit({{cookiecutter.__app_slug_uc}}_PERF_ID);
 
-    CFE_ES_ExitApp(SAMPLE_APP_Data.RunStatus);
+    CFE_ES_ExitApp({{cookiecutter.__app_slug_uc}}_Data.RunStatus);
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  */
@@ -108,25 +108,25 @@ void SAMPLE_APP_Main(void)
 /* Initialization                                                             */
 /*                                                                            */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/
-int32 SAMPLE_APP_Init(void)
+int32 {{cookiecutter.__app_slug_uc}}_Init(void)
 {
     int32 status;
 
-    SAMPLE_APP_Data.RunStatus = CFE_ES_RunStatus_APP_RUN;
+    {{cookiecutter.__app_slug_uc}}_Data.RunStatus = CFE_ES_RunStatus_APP_RUN;
 
     /*
     ** Initialize app command execution counters
     */
-    SAMPLE_APP_Data.CmdCounter = 0;
-    SAMPLE_APP_Data.ErrCounter = 0;
+    {{cookiecutter.__app_slug_uc}}_Data.CmdCounter = 0;
+    {{cookiecutter.__app_slug_uc}}_Data.ErrCounter = 0;
 
     /*
     ** Initialize app configuration data
     */
-    SAMPLE_APP_Data.PipeDepth = SAMPLE_APP_PIPE_DEPTH;
+    {{cookiecutter.__app_slug_uc}}_Data.PipeDepth = {{cookiecutter.__app_slug_uc}}_PIPE_DEPTH;
 
-    strncpy(SAMPLE_APP_Data.PipeName, "SAMPLE_APP_CMD_PIPE", sizeof(SAMPLE_APP_Data.PipeName));
-    SAMPLE_APP_Data.PipeName[sizeof(SAMPLE_APP_Data.PipeName) - 1] = 0;
+    strncpy({{cookiecutter.__app_slug_uc}}_Data.PipeName, "{{cookiecutter.__app_slug_uc}}_CMD_PIPE", sizeof({{cookiecutter.__app_slug_uc}}_Data.PipeName));
+    {{cookiecutter.__app_slug_uc}}_Data.PipeName[sizeof({{cookiecutter.__app_slug_uc}}_Data.PipeName) - 1] = 0;
 
     /*
     ** Register the events
@@ -141,13 +141,13 @@ int32 SAMPLE_APP_Init(void)
     /*
     ** Initialize housekeeping packet (clear user data area).
     */
-    CFE_MSG_Init(CFE_MSG_PTR(SAMPLE_APP_Data.HkTlm.TelemetryHeader), CFE_SB_ValueToMsgId(SAMPLE_APP_HK_TLM_MID),
-                 sizeof(SAMPLE_APP_Data.HkTlm));
+    CFE_MSG_Init(CFE_MSG_PTR({{cookiecutter.__app_slug_uc}}_Data.HkTlm.TelemetryHeader), CFE_SB_ValueToMsgId({{cookiecutter.__app_slug_uc}}_HK_TLM_MID),
+                 sizeof({{cookiecutter.__app_slug_uc}}_Data.HkTlm));
 
     /*
     ** Create Software Bus message pipe.
     */
-    status = CFE_SB_CreatePipe(&SAMPLE_APP_Data.CommandPipe, SAMPLE_APP_Data.PipeDepth, SAMPLE_APP_Data.PipeName);
+    status = CFE_SB_CreatePipe(&{{cookiecutter.__app_slug_uc}}_Data.CommandPipe, {{cookiecutter.__app_slug_uc}}_Data.PipeDepth, {{cookiecutter.__app_slug_uc}}_Data.PipeName);
     if (status != CFE_SUCCESS)
     {
         CFE_ES_WriteToSysLog("Sample App: Error creating pipe, RC = 0x%08lX\n", (unsigned long)status);
@@ -157,7 +157,7 @@ int32 SAMPLE_APP_Init(void)
     /*
     ** Subscribe to Housekeeping request commands
     */
-    status = CFE_SB_Subscribe(CFE_SB_ValueToMsgId(SAMPLE_APP_SEND_HK_MID), SAMPLE_APP_Data.CommandPipe);
+    status = CFE_SB_Subscribe(CFE_SB_ValueToMsgId({{cookiecutter.__app_slug_uc}}_SEND_HK_MID), {{cookiecutter.__app_slug_uc}}_Data.CommandPipe);
     if (status != CFE_SUCCESS)
     {
         CFE_ES_WriteToSysLog("Sample App: Error Subscribing to HK request, RC = 0x%08lX\n", (unsigned long)status);
@@ -167,7 +167,7 @@ int32 SAMPLE_APP_Init(void)
     /*
     ** Subscribe to ground command packets
     */
-    status = CFE_SB_Subscribe(CFE_SB_ValueToMsgId(SAMPLE_APP_CMD_MID), SAMPLE_APP_Data.CommandPipe);
+    status = CFE_SB_Subscribe(CFE_SB_ValueToMsgId({{cookiecutter.__app_slug_uc}}_CMD_MID), {{cookiecutter.__app_slug_uc}}_Data.CommandPipe);
     if (status != CFE_SUCCESS)
     {
         CFE_ES_WriteToSysLog("Sample App: Error Subscribing to Command, RC = 0x%08lX\n", (unsigned long)status);
@@ -178,8 +178,8 @@ int32 SAMPLE_APP_Init(void)
     /*
     ** Register Table(s)
     */
-    status = CFE_TBL_Register(&SAMPLE_APP_Data.TblHandles[0], "SampleAppTable", sizeof(SAMPLE_APP_Table_t),
-                              CFE_TBL_OPT_DEFAULT, SAMPLE_APP_TblValidationFunc);
+    status = CFE_TBL_Register(&{{cookiecutter.__app_slug_uc}}_Data.TblHandles[0], "SampleAppTable", sizeof({{cookiecutter.__app_slug_uc}}_Table_t),
+                              CFE_TBL_OPT_DEFAULT, {{cookiecutter.__app_slug_uc}}_TblValidationFunc);
     if (status != CFE_SUCCESS)
     {
         CFE_ES_WriteToSysLog("Sample App: Error Registering Table, RC = 0x%08lX\n", (unsigned long)status);
@@ -188,11 +188,11 @@ int32 SAMPLE_APP_Init(void)
     }
     else
     {
-        status = CFE_TBL_Load(SAMPLE_APP_Data.TblHandles[0], CFE_TBL_SRC_FILE, SAMPLE_APP_TABLE_FILE);
+        status = CFE_TBL_Load({{cookiecutter.__app_slug_uc}}_Data.TblHandles[0], CFE_TBL_SRC_FILE, {{cookiecutter.__app_slug_uc}}_TABLE_FILE);
     }
 
-    CFE_EVS_SendEvent(SAMPLE_APP_STARTUP_INF_EID, CFE_EVS_EventType_INFORMATION, "SAMPLE App Initialized.%s",
-                      SAMPLE_APP_VERSION_STRING);
+    CFE_EVS_SendEvent({{cookiecutter.__app_slug_uc}}_STARTUP_INF_EID, CFE_EVS_EventType_INFORMATION, "SAMPLE App Initialized.%s",
+                      {{cookiecutter.__app_slug_uc}}_VERSION_STRING);
 
     return CFE_SUCCESS;
 }
@@ -204,7 +204,7 @@ int32 SAMPLE_APP_Init(void)
 /*     command pipe.                                                          */
 /*                                                                            */
 /* * * * * * * * * * * * * * * * * * * * * * * *  * * * * * * *  * *  * * * * */
-void SAMPLE_APP_ProcessCommandPacket(CFE_SB_Buffer_t *SBBufPtr)
+void {{cookiecutter.__app_slug_uc}}_ProcessCommandPacket(CFE_SB_Buffer_t *SBBufPtr)
 {
     CFE_SB_MsgId_t MsgId = CFE_SB_INVALID_MSG_ID;
 
@@ -212,16 +212,16 @@ void SAMPLE_APP_ProcessCommandPacket(CFE_SB_Buffer_t *SBBufPtr)
 
     switch (CFE_SB_MsgIdToValue(MsgId))
     {
-        case SAMPLE_APP_CMD_MID:
-            SAMPLE_APP_ProcessGroundCommand(SBBufPtr);
+        case {{cookiecutter.__app_slug_uc}}_CMD_MID:
+            {{cookiecutter.__app_slug_uc}}_ProcessGroundCommand(SBBufPtr);
             break;
 
-        case SAMPLE_APP_SEND_HK_MID:
-            SAMPLE_APP_ReportHousekeeping((CFE_MSG_CommandHeader_t *)SBBufPtr);
+        case {{cookiecutter.__app_slug_uc}}_SEND_HK_MID:
+            {{cookiecutter.__app_slug_uc}}_ReportHousekeeping((CFE_MSG_CommandHeader_t *)SBBufPtr);
             break;
 
         default:
-            CFE_EVS_SendEvent(SAMPLE_APP_INVALID_MSGID_ERR_EID, CFE_EVS_EventType_ERROR,
+            CFE_EVS_SendEvent({{cookiecutter.__app_slug_uc}}_INVALID_MSGID_ERR_EID, CFE_EVS_EventType_ERROR,
                               "SAMPLE: invalid command packet,MID = 0x%x", (unsigned int)CFE_SB_MsgIdToValue(MsgId));
             break;
     }
@@ -232,7 +232,7 @@ void SAMPLE_APP_ProcessCommandPacket(CFE_SB_Buffer_t *SBBufPtr)
 /* SAMPLE ground commands                                                     */
 /*                                                                            */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/
-void SAMPLE_APP_ProcessGroundCommand(CFE_SB_Buffer_t *SBBufPtr)
+void {{cookiecutter.__app_slug_uc}}_ProcessGroundCommand(CFE_SB_Buffer_t *SBBufPtr)
 {
     CFE_MSG_FcnCode_t CommandCode = 0;
 
@@ -243,33 +243,33 @@ void SAMPLE_APP_ProcessGroundCommand(CFE_SB_Buffer_t *SBBufPtr)
     */
     switch (CommandCode)
     {
-        case SAMPLE_APP_NOOP_CC:
-            if (SAMPLE_APP_VerifyCmdLength(&SBBufPtr->Msg, sizeof(SAMPLE_APP_NoopCmd_t)))
+        case {{cookiecutter.__app_slug_uc}}_NOOP_CC:
+            if ({{cookiecutter.__app_slug_uc}}_VerifyCmdLength(&SBBufPtr->Msg, sizeof({{cookiecutter.__app_slug_uc}}_NoopCmd_t)))
             {
-                SAMPLE_APP_Noop((SAMPLE_APP_NoopCmd_t *)SBBufPtr);
+                {{cookiecutter.__app_slug_uc}}_Noop(({{cookiecutter.__app_slug_uc}}_NoopCmd_t *)SBBufPtr);
             }
 
             break;
 
-        case SAMPLE_APP_RESET_COUNTERS_CC:
-            if (SAMPLE_APP_VerifyCmdLength(&SBBufPtr->Msg, sizeof(SAMPLE_APP_ResetCountersCmd_t)))
+        case {{cookiecutter.__app_slug_uc}}_RESET_COUNTERS_CC:
+            if ({{cookiecutter.__app_slug_uc}}_VerifyCmdLength(&SBBufPtr->Msg, sizeof({{cookiecutter.__app_slug_uc}}_ResetCountersCmd_t)))
             {
-                SAMPLE_APP_ResetCounters((SAMPLE_APP_ResetCountersCmd_t *)SBBufPtr);
+                {{cookiecutter.__app_slug_uc}}_ResetCounters(({{cookiecutter.__app_slug_uc}}_ResetCountersCmd_t *)SBBufPtr);
             }
 
             break;
 
-        case SAMPLE_APP_PROCESS_CC:
-            if (SAMPLE_APP_VerifyCmdLength(&SBBufPtr->Msg, sizeof(SAMPLE_APP_ProcessCmd_t)))
+        case {{cookiecutter.__app_slug_uc}}_PROCESS_CC:
+            if ({{cookiecutter.__app_slug_uc}}_VerifyCmdLength(&SBBufPtr->Msg, sizeof({{cookiecutter.__app_slug_uc}}_ProcessCmd_t)))
             {
-                SAMPLE_APP_Process((SAMPLE_APP_ProcessCmd_t *)SBBufPtr);
+                {{cookiecutter.__app_slug_uc}}_Process(({{cookiecutter.__app_slug_uc}}_ProcessCmd_t *)SBBufPtr);
             }
 
             break;
 
         /* default case already found during FC vs length test */
         default:
-            CFE_EVS_SendEvent(SAMPLE_APP_COMMAND_ERR_EID, CFE_EVS_EventType_ERROR,
+            CFE_EVS_SendEvent({{cookiecutter.__app_slug_uc}}_COMMAND_ERR_EID, CFE_EVS_EventType_ERROR,
                               "Invalid ground command code: CC = %d", CommandCode);
             break;
     }
@@ -283,28 +283,28 @@ void SAMPLE_APP_ProcessGroundCommand(CFE_SB_Buffer_t *SBBufPtr)
 /*         telemetry, packetize it and send it to the housekeeping task via   */
 /*         the software bus                                                   */
 /* * * * * * * * * * * * * * * * * * * * * * * *  * * * * * * *  * *  * * * * */
-int32 SAMPLE_APP_ReportHousekeeping(const CFE_MSG_CommandHeader_t *Msg)
+int32 {{cookiecutter.__app_slug_uc}}_ReportHousekeeping(const CFE_MSG_CommandHeader_t *Msg)
 {
     int i;
 
     /*
     ** Get command execution counters...
     */
-    SAMPLE_APP_Data.HkTlm.Payload.CommandErrorCounter = SAMPLE_APP_Data.ErrCounter;
-    SAMPLE_APP_Data.HkTlm.Payload.CommandCounter      = SAMPLE_APP_Data.CmdCounter;
+    {{cookiecutter.__app_slug_uc}}_Data.HkTlm.Payload.CommandErrorCounter = {{cookiecutter.__app_slug_uc}}_Data.ErrCounter;
+    {{cookiecutter.__app_slug_uc}}_Data.HkTlm.Payload.CommandCounter      = {{cookiecutter.__app_slug_uc}}_Data.CmdCounter;
 
     /*
     ** Send housekeeping telemetry packet...
     */
-    CFE_SB_TimeStampMsg(CFE_MSG_PTR(SAMPLE_APP_Data.HkTlm.TelemetryHeader));
-    CFE_SB_TransmitMsg(CFE_MSG_PTR(SAMPLE_APP_Data.HkTlm.TelemetryHeader), true);
+    CFE_SB_TimeStampMsg(CFE_MSG_PTR({{cookiecutter.__app_slug_uc}}_Data.HkTlm.TelemetryHeader));
+    CFE_SB_TransmitMsg(CFE_MSG_PTR({{cookiecutter.__app_slug_uc}}_Data.HkTlm.TelemetryHeader), true);
 
     /*
     ** Manage any pending table loads, validations, etc.
     */
-    for (i = 0; i < SAMPLE_APP_NUMBER_OF_TABLES; i++)
+    for (i = 0; i < {{cookiecutter.__app_slug_uc}}_NUMBER_OF_TABLES; i++)
     {
-        CFE_TBL_Manage(SAMPLE_APP_Data.TblHandles[i]);
+        CFE_TBL_Manage({{cookiecutter.__app_slug_uc}}_Data.TblHandles[i]);
     }
 
     return CFE_SUCCESS;
@@ -315,12 +315,12 @@ int32 SAMPLE_APP_ReportHousekeeping(const CFE_MSG_CommandHeader_t *Msg)
 /* SAMPLE NOOP commands                                                       */
 /*                                                                            */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/
-int32 SAMPLE_APP_Noop(const SAMPLE_APP_NoopCmd_t *Msg)
+int32 {{cookiecutter.__app_slug_uc}}_Noop(const {{cookiecutter.__app_slug_uc}}_NoopCmd_t *Msg)
 {
-    SAMPLE_APP_Data.CmdCounter++;
+    {{cookiecutter.__app_slug_uc}}_Data.CmdCounter++;
 
-    CFE_EVS_SendEvent(SAMPLE_APP_COMMANDNOP_INF_EID, CFE_EVS_EventType_INFORMATION, "SAMPLE: NOOP command %s",
-                      SAMPLE_APP_VERSION);
+    CFE_EVS_SendEvent({{cookiecutter.__app_slug_uc}}_COMMANDNOP_INF_EID, CFE_EVS_EventType_INFORMATION, "SAMPLE: NOOP command %s",
+                      {{cookiecutter.__app_slug_uc}}_VERSION);
 
     return CFE_SUCCESS;
 }
@@ -332,12 +332,12 @@ int32 SAMPLE_APP_Noop(const SAMPLE_APP_NoopCmd_t *Msg)
 /*         part of the task telemetry.                                        */
 /*                                                                            */
 /* * * * * * * * * * * * * * * * * * * * * * * *  * * * * * * *  * *  * * * * */
-int32 SAMPLE_APP_ResetCounters(const SAMPLE_APP_ResetCountersCmd_t *Msg)
+int32 {{cookiecutter.__app_slug_uc}}_ResetCounters(const {{cookiecutter.__app_slug_uc}}_ResetCountersCmd_t *Msg)
 {
-    SAMPLE_APP_Data.CmdCounter = 0;
-    SAMPLE_APP_Data.ErrCounter = 0;
+    {{cookiecutter.__app_slug_uc}}_Data.CmdCounter = 0;
+    {{cookiecutter.__app_slug_uc}}_Data.ErrCounter = 0;
 
-    CFE_EVS_SendEvent(SAMPLE_APP_COMMANDRST_INF_EID, CFE_EVS_EventType_INFORMATION, "SAMPLE: RESET command");
+    CFE_EVS_SendEvent({{cookiecutter.__app_slug_uc}}_COMMANDRST_INF_EID, CFE_EVS_EventType_INFORMATION, "SAMPLE: RESET command");
 
     return CFE_SUCCESS;
 }
@@ -348,15 +348,15 @@ int32 SAMPLE_APP_ResetCounters(const SAMPLE_APP_ResetCountersCmd_t *Msg)
 /*         This function Process Ground Station Command                       */
 /*                                                                            */
 /* * * * * * * * * * * * * * * * * * * * * * * *  * * * * * * *  * *  * * * * */
-int32 SAMPLE_APP_Process(const SAMPLE_APP_ProcessCmd_t *Msg)
+int32 {{cookiecutter.__app_slug_uc}}_Process(const {{cookiecutter.__app_slug_uc}}_ProcessCmd_t *Msg)
 {
     int32               status;
-    SAMPLE_APP_Table_t *TblPtr;
-    const char *        TableName = "SAMPLE_APP.SampleAppTable";
+    {{cookiecutter.__app_slug_uc}}_Table_t *TblPtr;
+    const char *        TableName = "{{cookiecutter.__app_slug_uc}}.SampleAppTable";
 
     /* Sample Use of Table */
 
-    status = CFE_TBL_GetAddress((void *)&TblPtr, SAMPLE_APP_Data.TblHandles[0]);
+    status = CFE_TBL_GetAddress((void *)&TblPtr, {{cookiecutter.__app_slug_uc}}_Data.TblHandles[0]);
 
     if (status < CFE_SUCCESS)
     {
@@ -366,9 +366,9 @@ int32 SAMPLE_APP_Process(const SAMPLE_APP_ProcessCmd_t *Msg)
 
     CFE_ES_WriteToSysLog("Sample App: Table Value 1: %d  Value 2: %d", TblPtr->Int1, TblPtr->Int2);
 
-    SAMPLE_APP_GetCrc(TableName);
+    {{cookiecutter.__app_slug_uc}}_GetCrc(TableName);
 
-    status = CFE_TBL_ReleaseAddress(SAMPLE_APP_Data.TblHandles[0]);
+    status = CFE_TBL_ReleaseAddress({{cookiecutter.__app_slug_uc}}_Data.TblHandles[0]);
     if (status != CFE_SUCCESS)
     {
         CFE_ES_WriteToSysLog("Sample App: Fail to release table address: 0x%08lx", (unsigned long)status);
@@ -386,7 +386,7 @@ int32 SAMPLE_APP_Process(const SAMPLE_APP_ProcessCmd_t *Msg)
 /* Verify command packet length                                               */
 /*                                                                            */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/
-bool SAMPLE_APP_VerifyCmdLength(CFE_MSG_Message_t *MsgPtr, size_t ExpectedLength)
+bool {{cookiecutter.__app_slug_uc}}_VerifyCmdLength(CFE_MSG_Message_t *MsgPtr, size_t ExpectedLength)
 {
     bool              result       = true;
     size_t            ActualLength = 0;
@@ -403,14 +403,14 @@ bool SAMPLE_APP_VerifyCmdLength(CFE_MSG_Message_t *MsgPtr, size_t ExpectedLength
         CFE_MSG_GetMsgId(MsgPtr, &MsgId);
         CFE_MSG_GetFcnCode(MsgPtr, &FcnCode);
 
-        CFE_EVS_SendEvent(SAMPLE_APP_LEN_ERR_EID, CFE_EVS_EventType_ERROR,
+        CFE_EVS_SendEvent({{cookiecutter.__app_slug_uc}}_LEN_ERR_EID, CFE_EVS_EventType_ERROR,
                           "Invalid Msg length: ID = 0x%X,  CC = %u, Len = %u, Expected = %u",
                           (unsigned int)CFE_SB_MsgIdToValue(MsgId), (unsigned int)FcnCode, (unsigned int)ActualLength,
                           (unsigned int)ExpectedLength);
 
         result = false;
 
-        SAMPLE_APP_Data.ErrCounter++;
+        {{cookiecutter.__app_slug_uc}}_Data.ErrCounter++;
     }
 
     return result;
@@ -421,18 +421,18 @@ bool SAMPLE_APP_VerifyCmdLength(CFE_MSG_Message_t *MsgPtr, size_t ExpectedLength
 /* Verify contents of First Table buffer contents                  */
 /*                                                                 */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int32 SAMPLE_APP_TblValidationFunc(void *TblData)
+int32 {{cookiecutter.__app_slug_uc}}_TblValidationFunc(void *TblData)
 {
     int32               ReturnCode = CFE_SUCCESS;
-    SAMPLE_APP_Table_t *TblDataPtr = (SAMPLE_APP_Table_t *)TblData;
+    {{cookiecutter.__app_slug_uc}}_Table_t *TblDataPtr = ({{cookiecutter.__app_slug_uc}}_Table_t *)TblData;
 
     /*
     ** Sample Table Validation
     */
-    if (TblDataPtr->Int1 > SAMPLE_APP_TBL_ELEMENT_1_MAX)
+    if (TblDataPtr->Int1 > {{cookiecutter.__app_slug_uc}}_TBL_ELEMENT_1_MAX)
     {
         /* First element is out of range, return an appropriate error code */
-        ReturnCode = SAMPLE_APP_TABLE_OUT_OF_RANGE_ERR_CODE;
+        ReturnCode = {{cookiecutter.__app_slug_uc}}_TABLE_OUT_OF_RANGE_ERR_CODE;
     }
 
     return ReturnCode;
@@ -443,7 +443,7 @@ int32 SAMPLE_APP_TblValidationFunc(void *TblData)
 /* Output CRC                                                      */
 /*                                                                 */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-void SAMPLE_APP_GetCrc(const char *TableName)
+void {{cookiecutter.__app_slug_uc}}_GetCrc(const char *TableName)
 {
     int32          status;
     uint32         Crc;

@@ -22,9 +22,9 @@
  * Define Sample App Performance IDs
  */
 
-#ifndef SAMPLE_APP_PERFIDS_H
-#define SAMPLE_APP_PERFIDS_H
+#ifndef {{cookiecutter.__app_slug_uc}}_PERFIDS_H
+#define {{cookiecutter.__app_slug_uc}}_PERFIDS_H
 
-#define SAMPLE_APP_PERF_ID 91
+#define {{cookiecutter.__app_slug_uc}}_PERF_ID 91
 
-#endif /* SAMPLE_APP_PERFIDS_H */
+#endif /* {{cookiecutter.__app_slug_uc}}_PERFIDS_H */

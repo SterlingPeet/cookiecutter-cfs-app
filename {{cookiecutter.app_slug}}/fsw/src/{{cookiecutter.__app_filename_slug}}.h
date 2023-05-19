@@ -22,8 +22,8 @@
  * Main header file for the SAMPLE application
  */
 
-#ifndef SAMPLE_APP_H
-#define SAMPLE_APP_H
+#ifndef {{cookiecutter.__app_slug_uc}}_H
+#define {{cookiecutter.__app_slug_uc}}_H
 
 /*
 ** Required header files.
@@ -39,16 +39,16 @@
 #include "sample_app_msg.h"
 
 /***********************************************************************/
-#define SAMPLE_APP_PIPE_DEPTH 32 /* Depth of the Command Pipe for Application */
+#define {{cookiecutter.__app_slug_uc}}_PIPE_DEPTH 32 /* Depth of the Command Pipe for Application */
 
-#define SAMPLE_APP_NUMBER_OF_TABLES 1 /* Number of Table(s) */
+#define {{cookiecutter.__app_slug_uc}}_NUMBER_OF_TABLES 1 /* Number of Table(s) */
 
 /* Define filenames of default data images for tables */
 #define SAMPLE_APP_TABLE_FILE "/cf/sample_app_tbl.tbl"
 
-#define SAMPLE_APP_TABLE_OUT_OF_RANGE_ERR_CODE -1
+#define {{cookiecutter.__app_slug_uc}}_TABLE_OUT_OF_RANGE_ERR_CODE -1
 
-#define SAMPLE_APP_TBL_ELEMENT_1_MAX 10
+#define {{cookiecutter.__app_slug_uc}}_TBL_ELEMENT_1_MAX 10
 /************************************************************************
 ** Type Definitions
 *************************************************************************/
@@ -67,7 +67,7 @@ typedef struct
     /*
     ** Housekeeping telemetry packet...
     */
-    SAMPLE_APP_HkTlm_t HkTlm;
+    {{cookiecutter.__app_slug_uc}}_HkTlm_t HkTlm;
 
     /*
     ** Run Status variable used in the main processing loop
@@ -85,28 +85,28 @@ typedef struct
     char   PipeName[CFE_MISSION_MAX_API_LEN];
     uint16 PipeDepth;
 
-    CFE_TBL_Handle_t TblHandles[SAMPLE_APP_NUMBER_OF_TABLES];
-} SAMPLE_APP_Data_t;
+    CFE_TBL_Handle_t TblHandles[{{cookiecutter.__app_slug_uc}}_NUMBER_OF_TABLES];
+} {{cookiecutter.__app_slug_uc}}_Data_t;
 
 /****************************************************************************/
 /*
 ** Local function prototypes.
 **
-** Note: Except for the entry point (SAMPLE_APP_Main), these
+** Note: Except for the entry point ({{cookiecutter.__app_slug_uc}}_Main), these
 **       functions are not called from any other source module.
 */
-void  SAMPLE_APP_Main(void);
-int32 SAMPLE_APP_Init(void);
-void  SAMPLE_APP_ProcessCommandPacket(CFE_SB_Buffer_t *SBBufPtr);
-void  SAMPLE_APP_ProcessGroundCommand(CFE_SB_Buffer_t *SBBufPtr);
-int32 SAMPLE_APP_ReportHousekeeping(const CFE_MSG_CommandHeader_t *Msg);
-int32 SAMPLE_APP_ResetCounters(const SAMPLE_APP_ResetCountersCmd_t *Msg);
-int32 SAMPLE_APP_Process(const SAMPLE_APP_ProcessCmd_t *Msg);
-int32 SAMPLE_APP_Noop(const SAMPLE_APP_NoopCmd_t *Msg);
-void  SAMPLE_APP_GetCrc(const char *TableName);
+void  {{cookiecutter.__app_slug_uc}}_Main(void);
+int32 {{cookiecutter.__app_slug_uc}}_Init(void);
+void  {{cookiecutter.__app_slug_uc}}_ProcessCommandPacket(CFE_SB_Buffer_t *SBBufPtr);
+void  {{cookiecutter.__app_slug_uc}}_ProcessGroundCommand(CFE_SB_Buffer_t *SBBufPtr);
+int32 {{cookiecutter.__app_slug_uc}}_ReportHousekeeping(const CFE_MSG_CommandHeader_t *Msg);
+int32 {{cookiecutter.__app_slug_uc}}_ResetCounters(const {{cookiecutter.__app_slug_uc}}_ResetCountersCmd_t *Msg);
+int32 {{cookiecutter.__app_slug_uc}}_Process(const {{cookiecutter.__app_slug_uc}}_ProcessCmd_t *Msg);
+int32 {{cookiecutter.__app_slug_uc}}_Noop(const {{cookiecutter.__app_slug_uc}}_NoopCmd_t *Msg);
+void  {{cookiecutter.__app_slug_uc}}_GetCrc(const char *TableName);
 
-int32 SAMPLE_APP_TblValidationFunc(void *TblData);
+int32 {{cookiecutter.__app_slug_uc}}_TblValidationFunc(void *TblData);
 
-bool SAMPLE_APP_VerifyCmdLength(CFE_MSG_Message_t *MsgPtr, size_t ExpectedLength);
+bool {{cookiecutter.__app_slug_uc}}_VerifyCmdLength(CFE_MSG_Message_t *MsgPtr, size_t ExpectedLength);
 
-#endif /* SAMPLE_APP_H */
+#endif /* {{cookiecutter.__app_slug_uc}}_H */

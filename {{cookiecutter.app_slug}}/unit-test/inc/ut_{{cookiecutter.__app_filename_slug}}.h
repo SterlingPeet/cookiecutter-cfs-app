@@ -32,19 +32,19 @@
  * order to exercise or set up for off-nominal cases.
  */
 
-#ifndef UT_SAMPLE_APP_H
-#define UT_SAMPLE_APP_H
+#ifndef UT_{{cookiecutter.__app_slug_uc}}_H
+#define UT_{{cookiecutter.__app_slug_uc}}_H
 
 /*
  * Necessary to include these here to get the definition of the
- * "SAMPLE_APP_Data_t" typedef.
+ * "{{cookiecutter.__app_slug_uc}}_Data_t" typedef.
  */
 #include "sample_app_events.h"
 #include "sample_app.h"
 
 /*
- * Allow UT access to the global "SAMPLE_APP_Data" object.
+ * Allow UT access to the global "{{cookiecutter.__app_slug_uc}}_Data" object.
  */
-extern SAMPLE_APP_Data_t SAMPLE_APP_Data;
+extern {{cookiecutter.__app_slug_uc}}_Data_t {{cookiecutter.__app_slug_uc}}_Data;
 
-#endif /* UT_SAMPLE_APP_H */
+#endif /* UT_{{cookiecutter.__app_slug_uc}}_H */
