@@ -19,7 +19,6 @@ repos:
   - id: check-docstring-first
   - id: check-executables-have-shebangs
   - id: check-json
-  - id: check-xml
   - id: check-yaml
   - id: debug-statements
   - id: detect-private-key
@@ -31,10 +30,6 @@ repos:
 - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
   rev: v2.9.0
   hooks:
-  - id: pretty-format-ini
-    args: [--autofix]
-  - id: pretty-format-toml
-    args: [--autofix]
   - id: pretty-format-yaml
     args: [--autofix, --indent, '2']
 - repo: https://github.com/PyCQA/docformatter
