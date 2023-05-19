@@ -2,7 +2,7 @@
 
 ## Reporting a Vulnerability
 
-To report a vulnerability for the sample_app subsystem please [submit an issue](https://github.com/nasa/sample_app/issues/new/choose).
+To report a vulnerability for the sample_app subsystem please [submit an issue]({{ cookiecutter.app_url }}/issues/new/choose).
 
 For general cFS vulnerabilities please [open a cFS framework issue](https://github.com/nasa/cfs/issues/new/choose) and see our [top-level security policy](https://github.com/nasa/cFS/security/policy) for additional information.
 
@@ -10,25 +10,25 @@ In either case please use the "Bug Report" template and provide as much informat
 
 ## Testing
 
-**Disclaimer: nasa/sample_app is not responsible for any liability incurred under the [Apache License 2.0](https://github.com/nasa/sample_app/blob/main/LICENSE).**
+**Disclaimer: {{ cookiecutter.app_user_org }}/{{ cookiecutter.app_repo }} is not responsible for any liability incurred under the [Apache License 2.0]({{ cookiecutter.app_url }}/blob/main/LICENSE).**
 
-Testing is an important aspect our team values to improve sample_app.
+Testing is an important aspect our team values to improve {{ cookiecutter.app_repo }}.
 
 To view tools used for the cFS bundle, see our [top-level security policy](https://github.com/nasa/cFS/security/policy).
 
 ### CodeQL
 
-The [sample_app CodeQL GitHub Actions workflow](https://github.com/nasa/sample_app/actions/workflows/codeql-build.yml) is available to the public. To review the results, fork the sample_app repository and run the CodeQL workflow.
+The [{{ cookiecutter.app_repo }} CodeQL GitHub Actions workflow]({{ cookiecutter.app_url }}/actions/workflows/codeql-build.yml) is available to the public. To review the results, fork the {{ cookiecutter.app_repo }} repository and run the CodeQL workflow.
 
-CodeQL is ran for every push and pull-request on all branches of sample_app in GitHub Actions.
+CodeQL is run for every push and pull-request on all branches of {{ cookiecutter.app_repo }} in GitHub Actions.
 
 For the CodeQL GitHub Actions setup, visit https://github.com/github/codeql-action.
 
 ### Cppcheck
 
-The [sample_app Cppcheck GitHub Actions workflow and results](https://github.com/nasa/sample_app/actions/workflows/static-analysis.yml) are available to the public. To view the results, select a workflow and download the artifacts.
+The [{{ cookiecutter.app_repo }} Cppcheck GitHub Actions workflow and results]({{ cookiecutter.app_url }}/actions/workflows/static-analysis.yml) are available to the public. To view the results, select a workflow and download the artifacts.
 
-Cppcheck is ran for every push on the main branch and every pull request on all branches of sample_app in Github Actions.
+Cppcheck is ran for every push on the main branch and every pull request on all branches of {{ cookiecutter.app_repo }} in Github Actions.
 
 For more information about Cppcheck, visit http://cppcheck.sourceforge.net/.
 

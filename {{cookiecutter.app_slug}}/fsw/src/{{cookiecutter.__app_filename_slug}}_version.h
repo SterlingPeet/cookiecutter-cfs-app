@@ -27,16 +27,16 @@
 
 /* Development Build Macro Definitions */
 
-#define {{cookiecutter.__app_slug_uc}}_BUILD_NUMBER 39 /*!< Development Build: Number of commits since baseline */
+#define {{cookiecutter.__app_slug_uc}}_BUILD_NUMBER {{cookiecutter.__app_build_number}} /*!< Development Build: Number of commits since baseline */
 #define {{cookiecutter.__app_slug_uc}}_BUILD_BASELINE \
-    "v1.3.0-rc4" /*!< Development Build: git tag that is the base for the current development */
+    "{{cookiecutter.__app_baseline_version}}" /*!< Development Build: git tag that is the base for the current development */
 
 /*
  * Version Macros, see \ref cfsversions for definitions.
  */
-#define {{cookiecutter.__app_slug_uc}}_MAJOR_VERSION 1  /*!< @brief Major version number. */
-#define {{cookiecutter.__app_slug_uc}}_MINOR_VERSION 1  /*!< @brief Minor version number. */
-#define {{cookiecutter.__app_slug_uc}}_REVISION      99 /*!< @brief Revision version number. Value of 99 indicates a development version.*/
+#define {{cookiecutter.__app_slug_uc}}_MAJOR_VERSION {{cookiecutter.app_major_version}}  /*!< @brief Major version number. */
+#define {{cookiecutter.__app_slug_uc}}_MINOR_VERSION {{cookiecutter.app_minor_version}}  /*!< @brief Minor version number. */
+#define {{cookiecutter.__app_slug_uc}}_REVISION      {{cookiecutter.app_revision}} /*!< @brief Revision version number. Value of 99 indicates a development version.*/
 
 /*!
  * @brief Mission revision.
@@ -62,7 +62,7 @@
  * official version. @n See @ref cfsversions for format differences between development and release versions.
  */
 #define {{cookiecutter.__app_slug_uc}}_VERSION_STRING                       \
-    " Sample App DEVELOPMENT BUILD " {{cookiecutter.__app_slug_uc}}_VERSION \
-    ", Last Official Release: v1.1.0" /* For full support please use this version */
+    " {{cookiecutter.app_display_name}} DEVELOPMENT BUILD " {{cookiecutter.__app_slug_uc}}_VERSION \
+    ", Last Official Release: {{cookiecutter.__app_baseline_version}}" /* For full support please use this version */
 
 #endif /* {{cookiecutter.__app_slug_uc}}_VERSION_H */

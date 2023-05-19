@@ -2,8 +2,16 @@
     "full_name": "Developer Name",
     "email": "noreply@nospam.com",
     "app_display_name": "My Example",
+    "app_readme_title": "Core Flight System : Framework : App : {{ cookiecutter.app_display_name }}",
     "app_short_description": "{{ cookiecutter.app_display_name }} app for the cFS FSW framework.",
-    "app_slug": "{{ cookiecutter.app_display_name|slugify(separator='', lowercase=False) }}",
+    "app_slug": "{{ cookiecutter.app_display_name|slugify(separator='_', lowercase=False) }}",
+    "app_repo_base": "https://github.com",
+    "app_user_org": "nasa",
+    "app_repo": "{{ cookiecutter.app_slug|slugify(separator='_', lowercase=False) }}",
+    "app_url": "{{ cookiecutter.app_repo_base }}/{{ cookiecutter.app_user_org }}/{{ cookiecutter.app_repo }}",
+    "app_major_version": "0",
+    "app_minor_version": "1",
+    "app_revision": "99",
     "app_include_github_actions": ["yes", "no"],
     "app_cmd_mid": "0x1882",
     "app_send_hk_mid": "0x1883",
@@ -11,6 +19,7 @@
     "app_base_perf_id": "91",
     "license": ["None", "Apache 2.0 license", "MIT license", "BSD 2-Clause License", "BSD 3-Clause License"],
     "__app_filename_slug": "{{ cookiecutter.app_slug|slugify(separator='_') }}_app",
-    "__app_slug_uc": "{{ cookiecutter.app_slug|slugify(separator='_') }}_APP"
-
+    "__app_slug_uc": "{{ cookiecutter.app_slug|slugify(separator='_') }}_APP",
+    "__app_baseline_version": "{{cookiecutter.app_major_version}}.{{cookiecutter.app_minor_version}}.{{cookiecutter.app_revision}}",
+    "__app_build_number": "1"
 }
