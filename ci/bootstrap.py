@@ -146,29 +146,16 @@ def main():
     # add variants to the dict
     # check for duplicates in the matrix
 
-    default_inputs = {'deployment_display_name': 'Reference',
-                      'deployment_slug': 'Reference'}
+    default_inputs = {'app_display_name': 'Sample'}
     tox_envs['1-defaults'] = default_inputs
     write_conf_file('1-defaults', default_inputs)
-
-    long_inputs_file = {'deployment_display_name': 'Reference',
-                      'deployment_slug': 'Reference',
-                      'component_namespace': 'verylong::silly::naming::space'}
-    tox_envs['2-long-component-namespace'] = long_inputs_file
-    write_conf_file('2-long-component-namespace', long_inputs_file)
 
     # Make new cookiecutterrc for each env
     for (alias, conf) in matrix.from_file(repo_path.joinpath('ci', 'setup.cfg')).items():
         alias = '3-{}'.format(alias)
         tox_envs[alias] = conf
-        if 'deployment_slug' not in conf.keys():
-            conf['deployment_slug'] = 'MyExample'
-        path_to_dep = conf['deployment_path']
-        if path_to_dep == '' or path_to_dep == '.':
-            conf['deployment_path_to_project_root'] = '..'
-        else:
-            conf['deployment_path_to_project_root'] = '/'.join(
-                ['..' for k in path_to_dep.split('/')])
+        if 'app_display_name' not in conf.keys():
+            conf['app_display_name'] = 'Sample'
         write_conf_file(alias, conf)
 
     # Constitute templates from bootstrapped configuration

@@ -1,3 +1,2 @@
 default_context:
-  deployment_display_name: Reference
-  deployment_slug: Reference
+  app_display_name: Sample
