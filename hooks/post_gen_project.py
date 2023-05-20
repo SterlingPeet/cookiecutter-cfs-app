@@ -48,19 +48,16 @@ if __name__ == '__main__':
 
     You should now have a basic app that can be compiled and run.
 
-    If you want to add components to the deployment, you can do that
-    next.  This can be done by adding a line like this, near the bottom
-    of the deployment's CMakeLists.txt file:
+    From here there are a few more details to complete within your mission code
+    to compile and load the app in cFE/cFS.
 
-        add_fprime_subdirectory()
+    1. If needed, Add HK [and possibly WakeUp] MID(s) to Scheduler app's table
+    2. Add Telemetry MIDs to Telemetry Output's table
+    3. Add Command MID to Command Ingestor's table
+    4. Update [mission]_defs/target.cmake to build the app [APPLIST variable]
+    5. Add the new app to [mission]_defs/cfe_es_startup.scr
 
-    Then you need to (possibly purge) and generate the new cmake config
-    in the deployment:
-
-        fprime-util generate
-        fprime-util build
-
-    Now you should be able to run the executable from the build folder.
+    Now you should be able to build and run cFS with this app included!
 
 """
     )
