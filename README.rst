@@ -194,21 +194,21 @@ You will be asked for these fields:
     * - ``__app_filename_slug``
       - .. code:: python
 
-            "{{ cookiecutter.app_slug|slugify(separator='_') }}_app"
+            "my_example_app"
 
       - You will not be prompted for this value.
 
     * - ``__app_slug_uc``
       - .. code:: python
 
-            "{{ cookiecutter.app_slug|slugify(separator='_') }}_APP"
+            "MY_EXAMPLE_APP"
 
       - You will not be prompted for this value.
 
     * - ``__app_baseline_version``
       - .. code:: python
 
-            "{{cookiecutter.app_major_version}}.{{cookiecutter.app_minor_version}}.{{cookiecutter.app_revision}}"
+            "0.1.99"
 
       - You will not be prompted for this value.
 
