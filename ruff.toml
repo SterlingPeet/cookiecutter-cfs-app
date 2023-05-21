@@ -4,6 +4,9 @@ ignore = [
     "RUF001", # ruff-specific rules ambiguous-unicode-character-string
     "S101", # flake8-bandit assert
     "S308", # flake8-bandit suspicious-mark-safe-usage
+    "S603", # subprocess vulnerabilites irrelevant within internal tooling
+    "S605", # subprocess vulnerabilites irrelevant within internal tooling
+    "S606", # subprocess vulnerabilites irrelevant within internal tooling
     "E501", # pycodestyle line-too-long
 ]
 line-length = 89

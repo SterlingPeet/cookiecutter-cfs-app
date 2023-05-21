@@ -2,7 +2,7 @@
 #   pre-commit install
 # To update the pre-commit hooks run:
 #   pre-commit install-hooks
-exclude: ^(\.tox|ci|\.bumpversion\.cfg)(/|$)
+exclude: ^(\.tox|\.bumpversion\.cfg)(/|$)
 default_stages: [commit, merge-commit, push]
 repos:
 - repo: https://github.com/jorisroovers/gitlint
@@ -47,6 +47,7 @@ repos:
   - id: rstcheck
     args: [--report-level=warning, '--ignore-directives=automodule,testsetup']
     additional_dependencies: [sphinx]
+    exclude: ^(ci/templates/README.rst)(/|$)
 - repo: https://github.com/psf/black
   rev: 23.3.0
   hooks:

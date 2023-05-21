@@ -1,21 +1,19 @@
 """Post process the template files."""
-import datetime
-import os
 from pathlib import Path
 
 
 def replace_contents(filename, what, replacement):
     """Replace a string in the file with dynamic text."""
-    with open(filename) as fh:
+    with Path.open(filename) as fh:
         changelog = fh.read()
-    with open(filename, 'w') as fh:
+    with Path.open(filename, 'w') as fh:
         fh.write(changelog.replace(what, replacement))
 
 
 if __name__ == '__main__':
-    # Set some dates
-    today = datetime.date.today()
-    replace_contents('LICENSE', '<YEAR>', today.strftime('%Y'))
+    # # Set some dates
+    # today = datetime.date.today()
+    # replace_contents('LICENSE', '<YEAR>', today.strftime('%Y'))
 
     # Delete github actions files if requested
     if '{{cookiecutter.app_include_github_actions}}' == 'no':
@@ -26,7 +24,7 @@ if __name__ == '__main__':
 
     # Delete license file if None was selected.
     if '{{cookiecutter.license}}' == 'None':
-        os.unlink('LICENSE')
+        Path.unlink('LICENSE')
 
     print(
         """

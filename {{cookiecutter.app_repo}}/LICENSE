@@ -1,6 +1,6 @@
 {{ cookiecutter.app_display_name }} App for core Flight System
 
-Copyright <YEAR> {{ cookiecutter.full_name }}
+Copyright {% now 'utc', '%Y' %} {{ cookiecutter.full_name }}
 
 {% if cookiecutter.license == 'Apache 2.0 license' -%}
 Licensed under the Apache License, Version 2.0 (the "License");

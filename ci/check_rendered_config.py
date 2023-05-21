@@ -6,26 +6,36 @@ from pathlib import Path
 import yaml
 
 parser = argparse.ArgumentParser(
-    description='checks that the rendered output is the same configuration options as specified in the input configuration file.')
-parser.add_argument('ENV_NAME',
-                    help='name of testing env, used to find the config file')
-parser.add_argument('-e', '--envdir', default=Path().joinpath('ci', 'envs'),
-                    help='path to dir containing env configuration files')
-parser.add_argument('-o', '--outdir', default=Path().joinpath('test-proj'),
-                    help='path to folder where cookiecutter was run')
+    description='checks that the rendered output is the same configuration options as specified in the input configuration file.'
+)
+parser.add_argument(
+    'ENV_NAME', help='name of testing env, used to find the config file'
+)
+parser.add_argument(
+    '-e',
+    '--envdir',
+    default=Path().joinpath('ci', 'envs'),
+    help='path to dir containing env configuration files',
+)
+parser.add_argument(
+    '-o',
+    '--outdir',
+    default=Path().joinpath('test-proj'),
+    help='path to folder where cookiecutter was run',
+)
 
 
 def main(env, envdir, outdir):
-    input_file = envdir.joinpath(
-        f'{env}.cookiecutterrc')
+    input_file = envdir.joinpath(f'{env}.cookiecutterrc')
     print(f'Reading env input conf file: {input_file}')
-    with open(input_file) as fh:
+    with Path.open(input_file) as fh:
         input_conf = yaml.safe_load(fh)
 
-    output_file = outdir.joinpath(input_conf['default_context']['deployment_slug'
-                                                                ], '.cookiecutterrc')
+    output_file = outdir.joinpath(
+        input_conf['default_context']['deployment_slug'], '.cookiecutterrc'
+    )
     print(f'Reading env output conf file: {output_file}')
-    with open(output_file) as fh:
+    with Path.open(output_file) as fh:
         output_conf = yaml.safe_load(fh)
 
     # check for discrepencies
@@ -45,6 +55,4 @@ def main(env, envdir, outdir):
 if __name__ == '__main__':
     args = sys.argv[1:]
     args = parser.parse_args(args=args)
-    main(env=args.ENV_NAME,
-         envdir=Path(args.envdir),
-         outdir=Path(args.outdir))
+    main(env=args.ENV_NAME, envdir=Path(args.envdir), outdir=Path(args.outdir))

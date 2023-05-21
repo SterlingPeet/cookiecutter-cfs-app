@@ -17,6 +17,7 @@
     "app_send_hk_mid": "0x1883",
     "app_hk_tlm_mid": "0x0883",
     "app_base_perf_id": "91",
+    "app_table_slug": "{{ cookiecutter.app_display_name|slugify(separator='', lowercase=False) }}AppTable",
     "library_dep": ["no", "yes"],
     "library_name": "sample_lib",
     "library_h_file": "{{ cookiecutter.library_name|slugify(separator='_') }}.h",
@@ -25,5 +26,8 @@
     "__app_filename_slug": "{{ cookiecutter.app_slug|slugify(separator='_') }}_app",
     "__app_slug_uc": "{{ cookiecutter.app_slug|slugify(separator='_')|upper }}_APP",
     "__app_baseline_version": "{{cookiecutter.app_major_version}}.{{cookiecutter.app_minor_version}}.{{cookiecutter.app_revision}}",
-    "__app_build_number": "1"
+    "__app_build_number": "1",
+    "_extensions": [
+        "jinja2_time.TimeExtension"
+    ]
 }

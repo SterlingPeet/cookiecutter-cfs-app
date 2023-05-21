@@ -72,6 +72,10 @@
             "default_value": "91",
             "help": "Lowest ID number for performance tracking that belongs to this app.  If you are not using perf, it is safe to ignore this number."
         },
+        "app_table_slug": {
+            "default_value": "MyExampleAppTable",
+            "help": "App table name, typically TitleCase."
+        },
         "library_dep": {
             "default_value": "no",
             "help": "Choose yes for cFS library dependency boilerplate."
