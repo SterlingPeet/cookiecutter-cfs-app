@@ -158,8 +158,12 @@ def main():
     no_library = {'app_display_name': 'My Example',
                       'library_dep': 'no'}
     tox_envs['2-no-library'] = no_library
-    write_conf_file('2-no_library', no_library)
+    write_conf_file('2-no-library', no_library)
 
+    disparate_repo = {'app_display_name': 'My Example',
+                      'app_repo': 'my_example_lab'}
+    tox_envs['2-disparate-repo'] = disparate_repo
+    write_conf_file('2-disparate-repo', disparate_repo)
 
     # Make new cookiecutterrc for each env
     for (alias, conf) in matrix.from_file(repo_path.joinpath('ci', 'setup.cfg')).items():
