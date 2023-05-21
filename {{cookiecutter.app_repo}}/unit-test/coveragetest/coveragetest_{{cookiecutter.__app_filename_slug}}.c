@@ -36,7 +36,7 @@
  * Includes
  */
 
-{% if cookiecutter.library_dep == "yes" %}#include "{{cookiecutter.library_h_file}}" /* For {{cookiecutter.library_function}} */{% endif -%}
+{% if cookiecutter.library_dep == "yes" %}#include "{{cookiecutter.library_h_file}}" /* For {{cookiecutter.library_function}} */{% endif %}
 #include "{{cookiecutter.__app_filename_slug}}_coveragetest_common.h"
 #include "ut_{{cookiecutter.__app_filename_slug}}.h"
 

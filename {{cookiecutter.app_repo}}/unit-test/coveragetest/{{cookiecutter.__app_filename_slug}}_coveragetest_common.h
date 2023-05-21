@@ -19,7 +19,7 @@
 /**
  * @file
  *
- * Common definitions for all {{cookiecutter.__app_slug_uc}} coverage tests
+ * Common definitions for all {{cookiecutter.app_repo}} coverage tests
  */
 
 #ifndef {{cookiecutter.__app_slug_uc}}_COVERAGETEST_COMMON_H

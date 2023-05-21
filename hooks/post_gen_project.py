@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
     # Delete license file if None was selected.
     if '{{cookiecutter.license}}' == 'None':
-        Path.unlink('LICENSE')
+        Path('LICENSE').unlink()
 
     print(
         """

@@ -33,10 +33,10 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/inc)
 # OSAL implements a separate coverage test per source unit.
 add_cfe_coverage_test({{cookiecutter.app_repo}} ALL
     "coveragetest/coveragetest_{{cookiecutter.__app_filename_slug}}.c"
-    "${CFE_{{cookiecutter.__app_slug_uc}}_APP_SOURCE_DIR}/fsw/src/{{cookiecutter.__app_filename_slug}}.c"
+    "${CFE_{{cookiecutter.__app_slug_uc}}_SOURCE_DIR}/fsw/src/{{cookiecutter.__app_filename_slug}}.c"
 )
 
-{%- if cookiecutter.library_dep == "yes" %}# The {{cookiecutter.__app_filename_slug}} uses library functions provided by {{cookiecutter.library_name}} so must be linked
+{% if cookiecutter.library_dep == "yes" %}# The {{cookiecutter.__app_filename_slug}} uses library functions provided by {{cookiecutter.library_name}} so must be linked
 # with the {{cookiecutter.library_name}} stub library (this is mainly just an example of how this
 # can be done).
 add_cfe_coverage_dependency({{cookiecutter.app_repo}} ALL {{cookiecutter.library_name}}){% endif %}

@@ -19,7 +19,7 @@
 /**
  * @file
  *
- * Define {{cookiecutter.__app_filename_slug}} app table
+ * Define {{cookiecutter.__app_filename_slug}} table
  */
 
 #ifndef {{cookiecutter.__app_slug_uc}}_TABLE_H

@@ -24,8 +24,7 @@ Add any other context about the contribution here.
 **Third party code**
 If included, identify any third party code and provide text file of license
 
-{% if cookiecutter.app_user_org == "nasa" %}
-**Contributor Info - All information REQUIRED for consideration of pull request**
+{% if cookiecutter.app_user_org == "nasa" %}**Contributor Info - All information REQUIRED for consideration of pull request**
 Full name and company/organization/center of all contributors ("Personal" if individual work)
 - If NASA Civil Servant Employee or GSFC Contractor on SES II
   - Address/email/phone and contract/task information (if applicable) must be on file

@@ -3,7 +3,7 @@ project(CFE_{{cookiecutter.__app_slug_uc}} C)
 # Create the app module
 add_cfe_app({{cookiecutter.__app_filename_slug}} fsw/src/{{cookiecutter.__app_filename_slug}}.c)
 
-{%- if cookiecutter.library_dep == "yes" %}# Include the public API from {{cookiecutter.library_name}} to demonstrate how
+{% if cookiecutter.library_dep == "yes" %}# Include the public API from {{cookiecutter.library_name}} to demonstrate how
 # to call library-provided functions
 add_cfe_app_dependency({{cookiecutter.__app_filename_slug}} {{cookiecutter.library_name}}){% endif %}
 

@@ -62,7 +62,7 @@
  * official version. @n See @ref cfsversions for format differences between development and release versions.
  */
 #define {{cookiecutter.__app_slug_uc}}_VERSION_STRING                       \
-    " {{cookiecutter.app_display_name}} DEVELOPMENT BUILD " {{cookiecutter.__app_slug_uc}}_VERSION \
+    " {{cookiecutter.app_display_name}} App DEVELOPMENT BUILD " {{cookiecutter.__app_slug_uc}}_VERSION \
     ", Last Official Release: {{cookiecutter.__app_baseline_version}}" /* For full support please use this version */
 
 #endif /* {{cookiecutter.__app_slug_uc}}_VERSION_H */

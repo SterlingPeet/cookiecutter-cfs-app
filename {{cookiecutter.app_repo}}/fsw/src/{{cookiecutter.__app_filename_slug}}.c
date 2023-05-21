@@ -29,9 +29,9 @@
 #include "{{cookiecutter.__app_filename_slug}}.h"
 #include "{{cookiecutter.__app_filename_slug}}_table.h"
 
-{% if cookiecutter.library_dep == "yes" %}/* The {{cookiecutter.library_name}} module provides the {{cookiecutter.library_function}}() prototype */{% endif -%}
+{% if cookiecutter.library_dep == "yes" -%}/* The {{cookiecutter.library_name}} module provides the {{cookiecutter.library_function}}() prototype */{% endif %}
 #include <string.h>
-{%- if cookiecutter.library_dep == "yes" %}#include "{{cookiecutter.library_h_file}}"{% endif %}
+{% if cookiecutter.library_dep == "yes" -%}#include "{{cookiecutter.library_h_file}}"{% endif %}
 
 /*
 ** global data
@@ -191,7 +191,7 @@ int32 {{cookiecutter.__app_slug_uc}}_Init(void)
         status = CFE_TBL_Load({{cookiecutter.__app_slug_uc}}_Data.TblHandles[0], CFE_TBL_SRC_FILE, {{cookiecutter.__app_slug_uc}}_TABLE_FILE);
     }
 
-    CFE_EVS_SendEvent({{cookiecutter.__app_slug_uc}}_STARTUP_INF_EID, CFE_EVS_EventType_INFORMATION, "S{{cookiecutter.__app_slug_uc}} Initialized.%s",
+    CFE_EVS_SendEvent({{cookiecutter.__app_slug_uc}}_STARTUP_INF_EID, CFE_EVS_EventType_INFORMATION, "{{cookiecutter.__app_slug_uc}} Initialized.%s",
                       {{cookiecutter.__app_slug_uc}}_VERSION_STRING);
 
     return CFE_SUCCESS;
@@ -376,7 +376,7 @@ int32 {{cookiecutter.__app_slug_uc}}_Process(const {{cookiecutter.__app_slug_uc}
     }
 
     {% if cookiecutter.library_dep == "yes" %}/* Invoke a function provided by {{cookiecutter.library_name}} */
-    {{cookiecutter.library_function}}();{% endif -%}
+    {{cookiecutter.library_function}}();{% endif %}
 
     return CFE_SUCCESS;
 }
