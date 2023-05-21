@@ -29,9 +29,9 @@
 #include "{{cookiecutter.__app_filename_slug}}.h"
 #include "{{cookiecutter.__app_filename_slug}}_table.h"
 
-/* The sample_lib module provides the SAMPLE_LIB_Function() prototype */
+{% if cookiecutter.library_dep == "yes" %}/* The {{cookiecutter.library_name}} module provides the {{cookiecutter.library_function}}() prototype */{% endif -%}
 #include <string.h>
-#include "sample_lib.h"
+{%- if cookiecutter.library_dep == "yes" %}#include "{{cookiecutter.library_h_file}}"{% endif %}
 
 /*
 ** global data
@@ -375,8 +375,8 @@ int32 {{cookiecutter.__app_slug_uc}}_Process(const {{cookiecutter.__app_slug_uc}
         return status;
     }
 
-    /* Invoke a function provided by SAMPLE_APP_LIB */
-    SAMPLE_LIB_Function();
+    {% if cookiecutter.library_dep == "yes" %}/* Invoke a function provided by {{cookiecutter.library_name}} */
+    {{cookiecutter.library_function}}();{% endif -%}
 
     return CFE_SUCCESS;
 }

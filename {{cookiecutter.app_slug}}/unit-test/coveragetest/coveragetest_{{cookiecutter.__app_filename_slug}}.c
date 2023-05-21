@@ -36,7 +36,7 @@
  * Includes
  */
 
-#include "sample_lib.h" /* For SAMPLE_LIB_Function */
+{% if cookiecutter.library_dep == "yes" %}#include "{{cookiecutter.library_h_file}}" /* For {{cookiecutter.library_function}} */{% endif -%}
 #include "{{cookiecutter.__app_filename_slug}}_coveragetest_common.h"
 #include "ut_{{cookiecutter.__app_filename_slug}}.h"
 
@@ -498,11 +498,11 @@ void Test_{{cookiecutter.__app_slug_uc}}_ProcessCC(void)
      */
     UtAssert_STUB_COUNT(CFE_TBL_GetAddress, 1);
 
-    /*
-     * Confirm that the SAMPLE_LIB_Function() call was done
-     * NOTE: This stub is provided by the sample_lib library
+{% if cookiecutter.library_dep == "yes" %}    /*
+     * Confirm that the {{cookiecutter.library_function}}() call was done
+     * NOTE: This stub is provided by the {{cookiecutter.library_name}} library
      */
-    UtAssert_STUB_COUNT(SAMPLE_LIB_Function, 1);
+    UtAssert_STUB_COUNT({{cookiecutter.library_function}}, 1);{% endif %}
 
     /*
      * Configure the CFE_TBL_GetAddress function to return an error

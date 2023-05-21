@@ -177,6 +177,34 @@ You will be asked for these fields:
 
       - Lowest ID number for performance tracking that belongs to this app.  If you are not using perf, it is safe to ignore this number.
 
+    * - ``library_dep``
+      - .. code:: python
+
+            "no"
+
+      - Choose yes for cFS library dependency boilerplate.
+
+    * - ``library_name``
+      - .. code:: python
+
+            "sample_lib"
+
+      - Name of the library.
+
+    * - ``library_h_file``
+      - .. code:: python
+
+            "sample_lib.h"
+
+      - Header file in the libary containing useful function prototype.
+
+    * - ``library_function``
+      - .. code:: python
+
+            "SAMPLE_LIB_Function"
+
+      - Function prototype to add into boilerplate.
+
     * - ``license``
       - .. code:: python
 

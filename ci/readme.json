@@ -72,6 +72,22 @@
             "default_value": "91",
             "help": "Lowest ID number for performance tracking that belongs to this app.  If you are not using perf, it is safe to ignore this number."
         },
+        "library_dep": {
+            "default_value": "no",
+            "help": "Choose yes for cFS library dependency boilerplate."
+        },
+        "library_name": {
+            "default_value": "sample_lib",
+            "help": "Name of the library."
+        },
+        "library_h_file": {
+            "default_value": "sample_lib.h",
+            "help": "Header file in the libary containing useful function prototype."
+        },
+        "library_function": {
+            "default_value": "SAMPLE_LIB_Function",
+            "help": "Function prototype to add into boilerplate."
+        },
         "license": {
             "default_value": "None",
             "help": "License to use. Available options:\n\n        * None (no license text, assume project level license)\n        * Apache 2.0 license\n        * BSD license\n        * MIT license\n\n        What license to pick? https://choosealicense.com/"
