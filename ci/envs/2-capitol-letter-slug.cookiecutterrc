@@ -1,0 +1,3 @@
+default_context:
+  app_display_name: My Example
+  app_slug: ME

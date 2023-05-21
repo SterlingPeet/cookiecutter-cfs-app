@@ -150,13 +150,25 @@ def main():
     tox_envs['1-defaults'] = default_inputs
     write_conf_file('1-defaults', default_inputs)
 
+    cap_letter_slug = {'app_display_name': 'My Example',
+                      'app_slug': 'ME'}
+    tox_envs['2-capitol-letter-slug'] = cap_letter_slug
+    write_conf_file('2-capitol-letter-slug', cap_letter_slug)
+
+    no_library = {'app_display_name': 'My Example',
+                      'library_dep': 'no'}
+    tox_envs['2-no-library'] = no_library
+    write_conf_file('2-no_library', no_library)
+
+
     # Make new cookiecutterrc for each env
     for (alias, conf) in matrix.from_file(repo_path.joinpath('ci', 'setup.cfg')).items():
-        alias = '3-{}'.format(alias)
-        tox_envs[alias] = conf
-        if 'app_display_name' not in conf.keys():
-            conf['app_display_name'] = 'Sample'
-        write_conf_file(alias, conf)
+        if len(alias) > 0:
+            alias = '3-{}'.format(alias)
+            tox_envs[alias] = conf
+            if 'app_display_name' not in conf.keys():
+                conf['app_display_name'] = 'Sample'
+            write_conf_file(alias, conf)
 
     # Constitute templates from bootstrapped configuration
     for templ in repo_path.joinpath('ci', 'templates').iterdir():
