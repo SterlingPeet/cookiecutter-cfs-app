@@ -19,14 +19,14 @@
 /**
  * @file
  *
- * Define SAMPLE App  Messages and info
+ * Define {{cookiecutter.__app_slug_uc}} App  Messages and info
  */
 
 #ifndef {{cookiecutter.__app_slug_uc}}_MSG_H
 #define {{cookiecutter.__app_slug_uc}}_MSG_H
 
 /*
-** SAMPLE App command codes
+** {{cookiecutter.__app_slug_uc}} App command codes
 */
 #define {{cookiecutter.__app_slug_uc}}_NOOP_CC           0
 #define {{cookiecutter.__app_slug_uc}}_RESET_COUNTERS_CC 1

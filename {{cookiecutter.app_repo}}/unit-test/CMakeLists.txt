@@ -2,7 +2,7 @@
 #
 # Coverage Unit Test build recipe
 #
-# This CMake file contains the recipe for building the sample unit tests.
+# This CMake file contains the recipe for building the {{cookiecutter.__app_filename_slug}} unit tests.
 # It is invoked from the parent directory when unit tests are enabled.
 #
 ##################################################################
@@ -24,19 +24,19 @@ include_directories(${PROJECT_SOURCE_DIR}/fsw/src)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/inc)
 
 
-# Add a coverage test executable called "sample_app-ALL" that
-# covers all of the functions in sample_app.
+# Add a coverage test executable called "{{cookiecutter.app_repo}}-ALL" that
+# covers all of the functions in {{cookiecutter.app_repo}}.
 #
 # Also note in a more complex app/lib the coverage test can also
 # be broken down into smaller units (in which case one should use
 # a unique suffix other than "ALL" for each unit).  For example,
 # OSAL implements a separate coverage test per source unit.
-add_cfe_coverage_test(sample_app ALL
-    "coveragetest/coveragetest_sample_app.c"
-    "${CFE_SAMPLE_APP_SOURCE_DIR}/fsw/src/sample_app.c"
+add_cfe_coverage_test({{cookiecutter.app_repo}} ALL
+    "coveragetest/coveragetest_{{cookiecutter.__app_filename_slug}}.c"
+    "${CFE_{{cookiecutter.__app_slug_uc}}_APP_SOURCE_DIR}/fsw/src/{{cookiecutter.__app_filename_slug}}.c"
 )
 
-# The sample_app uses library functions provided by sample_lib so must be linked
-# with the sample_lib stub library (this is mainly just an example of how this
+{%- if cookiecutter.library_dep == "yes" %}# The {{cookiecutter.__app_filename_slug}} uses library functions provided by {{cookiecutter.library_name}} so must be linked
+# with the {{cookiecutter.library_name}} stub library (this is mainly just an example of how this
 # can be done).
-add_cfe_coverage_dependency(sample_app ALL sample_lib)
+add_cfe_coverage_dependency({{cookiecutter.app_repo}} ALL {{cookiecutter.library_name}}){% endif %}

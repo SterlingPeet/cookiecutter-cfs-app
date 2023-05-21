@@ -41,16 +41,16 @@
 /*
  * Macro to add a test case to the list of tests to execute
  */
-#define ADD_TEST(test) UtTest_Add((Test_##test), Sample_UT_Setup, Sample_UT_TearDown, #test)
+#define ADD_TEST(test) UtTest_Add((Test_##test), {{cookiecutter.app_slug}}_UT_Setup, {{cookiecutter.app_slug}}_UT_TearDown, #test)
 
 /*
  * Setup function prior to every test
  */
-void Sample_UT_Setup(void);
+void {{cookiecutter.app_slug}}_UT_Setup(void);
 
 /*
  * Teardown function after every test
  */
-void Sample_UT_TearDown(void);
+void {{cookiecutter.app_slug}}_UT_TearDown(void);
 
 #endif /* {{cookiecutter.__app_slug_uc}}_COVERAGETEST_COMMON_H */

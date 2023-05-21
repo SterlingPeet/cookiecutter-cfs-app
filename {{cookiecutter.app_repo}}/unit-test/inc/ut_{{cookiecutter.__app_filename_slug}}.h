@@ -21,7 +21,7 @@
  *
  *
  * Purpose:
- * Extra scaffolding functions for the sample_app unit test
+ * Extra scaffolding functions for the {{ cookiecutter.app_repo }} unit test
  *
  * Notes:
  * This is an extra UT-specific extern declaration

@@ -23,7 +23,18 @@
 ** The following is an example of the declaration statement that defines the desired
 ** contents of the table image.
 */
-SAMPLE_APP_Table_t SampleAppTable = {1, 2};
+{{cookiecutter.__app_slug_uc}}_Table_t {{cookiecutter.app_table_slug}} = {1, 2};
+
+/*
+** This is alternate table contents:
+**{
+**    .cParam = 'a',
+**    .sParam = 123,
+**    .iParam = 4567,
+**    .fParam = 123.456,
+**    .dParam = 12.345678
+**};
+*/
 
 /*
 ** The macro below identifies:
@@ -32,4 +43,4 @@ SAMPLE_APP_Table_t SampleAppTable = {1, 2};
 **    3) a brief description of the contents of the file image
 **    4) the desired name of the table image binary file that is cFE compatible
 */
-CFE_TBL_FILEDEF(SampleAppTable, SAMPLE_APP.SampleAppTable, Table Utility Test Table, {{cookiecutter.__app_filename_slug}}_tbl.tbl)
+CFE_TBL_FILEDEF({{cookiecutter.app_table_slug}}, {{cookiecutter.__app_slug_uc}}.{{cookiecutter.app_table_slug}}, Table Utility Test Table, {{cookiecutter.__app_filename_slug}}_tbl.tbl)

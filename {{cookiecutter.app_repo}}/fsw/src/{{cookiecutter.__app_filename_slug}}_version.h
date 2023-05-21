@@ -19,7 +19,7 @@
 /**
  * @file
  *
- *  The Sample App header file containing version information
+ *  The {{cookiecutter.app_display_name}} App header file containing version information
  */
 
 #ifndef {{cookiecutter.__app_slug_uc}}_VERSION_H

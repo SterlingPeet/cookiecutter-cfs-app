@@ -10,6 +10,6 @@ jobs:
     name: Codeql Analysis
     uses: nasa/cFS/.github/workflows/codeql-reusable.yml@main
     with:
-      component-path: apps/sample_app
+      component-path: apps/{{cookiecutter.app_repo}}
       prep: make prep; make -C build/tools/elf2cfetbl
-      make: make -C build/native/default_cpu1/apps/sample_app
+      make: make -C build/native/default_cpu1/apps/{{cookiecutter.app_repo}}

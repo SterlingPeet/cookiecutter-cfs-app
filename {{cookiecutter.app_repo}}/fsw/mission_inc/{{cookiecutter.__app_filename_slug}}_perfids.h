@@ -19,7 +19,7 @@
 /**
  * @file
  *
- * Define Sample App Performance IDs
+ * Define {{cookiecutter.app_display_name}} App Performance IDs
  */
 
 #ifndef {{cookiecutter.__app_slug_uc}}_PERFIDS_H

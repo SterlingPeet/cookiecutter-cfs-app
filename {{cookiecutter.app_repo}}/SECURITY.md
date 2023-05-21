@@ -2,7 +2,7 @@
 
 ## Reporting a Vulnerability
 
-To report a vulnerability for the sample_app subsystem please [submit an issue]({{ cookiecutter.app_url }}/issues/new/choose).
+To report a vulnerability for the {{ cookiecutter.app_repo }} subsystem please [submit an issue]({{ cookiecutter.app_url }}/issues/new/choose).
 
 For general cFS vulnerabilities please [open a cFS framework issue](https://github.com/nasa/cfs/issues/new/choose) and see our [top-level security policy](https://github.com/nasa/cFS/security/policy) for additional information.
 

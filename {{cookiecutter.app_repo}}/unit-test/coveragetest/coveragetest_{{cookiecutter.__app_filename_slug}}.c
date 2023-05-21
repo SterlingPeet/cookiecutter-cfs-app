@@ -20,11 +20,11 @@
 ** File: coveragetest_{{cookiecutter.__app_filename_slug}}.c
 **
 ** Purpose:
-** Coverage Unit Test cases for the SAMPLE Application
+** Coverage Unit Test cases for the {{cookiecutter.__app_slug_uc}} Application
 **
 ** Notes:
 ** This implements various test cases to exercise all code
-** paths through all functions defined in the SAMPLE application.
+** paths through all functions defined in the {{cookiecutter.__app_slug_uc}} application.
 **
 ** It is primarily focused at providing examples of the various
 ** stub configurations, hook functions, and wrapper calls that
@@ -225,7 +225,7 @@ void Test_{{cookiecutter.__app_slug_uc}}_Main(void)
      */
     UT_SetDeferredRetcode(UT_KEY(CFE_ES_RunLoop), 1, true);
     UT_SetDeferredRetcode(UT_KEY(CFE_SB_ReceiveBuffer), 1, CFE_SB_PIPE_RD_ERR);
-    UT_CHECKEVENT_SETUP(&EventTest, {{cookiecutter.__app_slug_uc}}_PIPE_ERR_EID, "SAMPLE APP: SB Pipe Read Error, App Will Exit");
+    UT_CHECKEVENT_SETUP(&EventTest, {{cookiecutter.__app_slug_uc}}_PIPE_ERR_EID, "{{cookiecutter.__app_slug_uc}}: SB Pipe Read Error, App Will Exit");
 
     /*
      * Invoke again
@@ -291,7 +291,7 @@ void Test_{{cookiecutter.__app_slug_uc}}_ProcessCommandPacket(void)
     UT_CheckEvent_t   EventTest;
 
     memset(&TestMsg, 0, sizeof(TestMsg));
-    UT_CHECKEVENT_SETUP(&EventTest, {{cookiecutter.__app_slug_uc}}_INVALID_MSGID_ERR_EID, "SAMPLE: invalid command packet,MID = 0x%x");
+    UT_CHECKEVENT_SETUP(&EventTest, {{cookiecutter.__app_slug_uc}}_INVALID_MSGID_ERR_EID, "{{cookiecutter.__app_slug_uc}}: invalid command packet,MID = 0x%x");
 
     /*
      * The CFE_MSG_GetMsgId() stub uses a data buffer to hold the
@@ -464,7 +464,7 @@ void Test_{{cookiecutter.__app_slug_uc}}_ResetCounters(void)
 
     memset(&TestMsg, 0, sizeof(TestMsg));
 
-    UT_CHECKEVENT_SETUP(&EventTest, {{cookiecutter.__app_slug_uc}}_COMMANDRST_INF_EID, "SAMPLE: RESET command");
+    UT_CHECKEVENT_SETUP(&EventTest, {{cookiecutter.__app_slug_uc}}_COMMANDRST_INF_EID, "{{cookiecutter.__app_slug_uc}}: RESET command");
 
     UtAssert_INT32_EQ({{cookiecutter.__app_slug_uc}}_ResetCounters(&TestMsg), CFE_SUCCESS);
 
@@ -597,7 +597,7 @@ void Test_{{cookiecutter.__app_slug_uc}}_GetCrc(void)
 /*
  * Setup function prior to every test
  */
-void Sample_UT_Setup(void)
+void {{cookiecutter.app_slug}}_UT_Setup(void)
 {
     UT_ResetState(0);
 }
@@ -605,7 +605,7 @@ void Sample_UT_Setup(void)
 /*
  * Teardown function after every test
  */
-void Sample_UT_TearDown(void) {}
+void {{cookiecutter.app_slug}}_UT_TearDown(void) {}
 
 /*
  * Register the test cases to execute with the unit test tool
