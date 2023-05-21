@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 import argparse
-import json
+import subprocess
+import sys
 from os import chdir
 from os import system as shell_cmd
 from pathlib import Path
-import subprocess
 from shutil import rmtree as rm_r
-import sys
 
 stamp_dir_name = '.progress'
 this_path = Path(__file__).resolve()
@@ -36,10 +34,10 @@ def check_call(args):
 
 
 def run_shell_cmd(cmd):
-    print("Running: {}".format(cmd))
+    print(f'Running: {cmd}')
     res = shell_cmd(cmd)
     if res != 0:
-        raise Exception('\033[1;36mFailed command: {}\033[0m'.format(cmd))
+        raise Exception(f'\033[1;36mFailed command: {cmd}\033[0m')
 
 
 def main(env, working_dir):
@@ -54,22 +52,22 @@ def main(env, working_dir):
         args.ENV_NAME))
     print('\033[1;36m================================\033[0m')
 
-    print('CWD: {}'.format(Path.cwd()))
+    print(f'CWD: {Path.cwd()}')
 
     if not stamp_dir.exists():
         stamp_dir.mkdir()
-    start_stamp = stamp_dir.joinpath('{}.start'.format(args.ENV_NAME))
+    start_stamp = stamp_dir.joinpath(f'{args.ENV_NAME}.start')
     with start_stamp.open('w') as fh:
         fh.write('\n')  # TODO: anthing else?
 
-    with open(repo_path.joinpath('ci', 'envs', args.ENV_NAME + '.cookiecutterrc'), 'r') as fh:
+    with open(repo_path.joinpath('ci', 'envs', args.ENV_NAME + '.cookiecutterrc')) as fh:
         env_conf_str = fh.read()
         env_conf = yaml.safe_load(env_conf_str)
         print(env_conf_str)
 
     render_path = working_dir.joinpath(
         env_conf['default_context']['deployment_slug'])
-    print('Render path: {}'.format(render_path))
+    print(f'Render path: {render_path}')
     if render_path.exists():
         rm_r(render_path)
     working_dir.mkdir(parents=True, exist_ok=True)
@@ -96,26 +94,26 @@ def main(env, working_dir):
     try:
         import fprime_extras
     except ModuleNotFoundError:
-        print('System Executable: {}'.format(sys.executable))
+        print(f'System Executable: {sys.executable}')
         check_call([sys.executable, '-m', 'pip', 'install',
                     str(repo_path.joinpath('test-proj', 'python-fprime-extras'))])
 
-    print('CWD: {}'.format(Path.cwd()))
+    print(f'CWD: {Path.cwd()}')
 
     assembly_file = 'Top/{}TopologyAppAi.xml'.format(
-        (env_conf['default_context']['deployment_slug']))
+        env_conf['default_context']['deployment_slug'])
     run_shell_cmd(
-        'fprime-extras lint {} ../fprime --config fplint.yml'.format(assembly_file))
+        f'fprime-extras lint {assembly_file} ../fprime --config fplint.yml')
 
     run_shell_cmd('fprime-util generate')
     run_shell_cmd('fprime-util build')
 
-    stop_stamp = stamp_dir.joinpath('{}.stop'.format(args.ENV_NAME))
+    stop_stamp = stamp_dir.joinpath(f'{args.ENV_NAME}.stop')
     with stop_stamp.open('w') as fh:
         fh.write('\n')  # TODO: anthing else?
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     args = sys.argv[1:]
     args = parser.parse_args(args=args)
 

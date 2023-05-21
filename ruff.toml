@@ -1,0 +1,43 @@
+
+extend-exclude = [".tox", ".eggs" ,"static", "ci/templates"]
+ignore = [
+    "RUF001", # ruff-specific rules ambiguous-unicode-character-string
+    "S101", # flake8-bandit assert
+    "S308", # flake8-bandit suspicious-mark-safe-usage
+    "E501", # pycodestyle line-too-long
+]
+line-length = 89
+select = [
+    "B", # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "DTZ", # flake8-datetimez
+    "E", # pycodestyle errors
+    "EXE", # flake8-executable
+    "F", # pyflakes
+    "I", # isort
+    "INT", # flake8-gettext
+    "PIE", # flake8-pie
+    "PLC", # pylint convention
+    "PLE", # pylint errors
+    "PT", # flake8-pytest-style
+    "PTH", # flake8-use-pathlib
+    "Q", # flake8-quotes
+    "RSE", # flake8-raise
+    "RUF", # ruff-specific rules
+    "S", # flake8-bandit
+    "UP", # pyupgrade
+    "W", # pycodestyle warnings
+]
+src = ["src", "tests"]
+target-version = "py39"
+
+[flake8-pytest-style]
+fixture-parentheses = false
+mark-parentheses = false
+
+[isort]
+forced-separate = ["conftest"]
+force-single-line = true
+
+[flake8-quotes]
+inline-quotes = "single"

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 import argparse
-from pathlib import Path
 import sys
+from pathlib import Path
+
 import yaml
 
 parser = argparse.ArgumentParser(
@@ -17,15 +17,15 @@ parser.add_argument('-o', '--outdir', default=Path().joinpath('test-proj'),
 
 def main(env, envdir, outdir):
     input_file = envdir.joinpath(
-        '{}.cookiecutterrc'.format(env))
-    print("Reading env input conf file: {}".format(input_file))
-    with open(input_file, 'r') as fh:
+        f'{env}.cookiecutterrc')
+    print(f'Reading env input conf file: {input_file}')
+    with open(input_file) as fh:
         input_conf = yaml.safe_load(fh)
 
     output_file = outdir.joinpath(input_conf['default_context']['deployment_slug'
                                                                 ], '.cookiecutterrc')
-    print("Reading env output conf file: {}".format(output_file))
-    with open(output_file, 'r') as fh:
+    print(f'Reading env output conf file: {output_file}')
+    with open(output_file) as fh:
         output_conf = yaml.safe_load(fh)
 
     # check for discrepencies
@@ -35,14 +35,14 @@ def main(env, envdir, outdir):
         out_val = output_conf['default_context'][key]
         if in_val != out_val:
             err_flag = True
-            err_str = '** ERROR: key {} mismatch, input[\'{}\'] output[\'{}\']'
+            err_str = "** ERROR: key {} mismatch, input['{}'] output['{}']"
             print(err_str.format(key, in_val, out_val))
 
     if err_flag:
         sys.exit(1)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     args = sys.argv[1:]
     args = parser.parse_args(args=args)
     main(env=args.ENV_NAME,

@@ -32,8 +32,12 @@ repos:
   hooks:
   - id: pretty-format-yaml
     args: [--autofix, --indent, '2']
+- repo: https://github.com/charliermarsh/ruff-pre-commit
+  rev: v0.0.269
+  hooks:
+  - id: ruff
 - repo: https://github.com/PyCQA/docformatter
-  rev: v1.7.0
+  rev: v1.7.1
   hooks:
   - id: docformatter
     args: [--in-place, --wrap-summaries, '95', --config, ./pyproject.toml]
@@ -43,25 +47,6 @@ repos:
   - id: rstcheck
     args: [--report-level=warning, '--ignore-directives=automodule,testsetup']
     additional_dependencies: [sphinx]
-- repo: https://github.com/PyCQA/pydocstyle
-  rev: 6.3.0
-  hooks:
-  - id: pydocstyle
-    additional_dependencies: [toml]
-- repo: https://github.com/pycqa/isort
-  rev: 5.12.0
-  hooks:
-  - id: isort
-- repo: https://github.com/pycqa/flake8
-  rev: 6.0.0
-  hooks:
-  - id: flake8
-    args: ['--exclude=.tox,.eggs,ci/templates,build,dist']
-- repo: https://github.com/asottile/pyupgrade
-  rev: v3.4.0
-  hooks:
-  - id: pyupgrade
-    args: [--py39-plus]
 - repo: https://github.com/psf/black
   rev: 23.3.0
   hooks:
