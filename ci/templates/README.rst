@@ -16,6 +16,8 @@ Features
 --------
 
 * Working app created by running the Cookiecutter_.
+* Optional Tables.
+* Optional Library Dependency.
 * Choice of various licenses.
 
 Requirements

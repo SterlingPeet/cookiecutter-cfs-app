@@ -14,6 +14,10 @@ Future Work:
  * Template the file header generation so its not just the nasa Sample app output
  * Use Jinja loops to template out command, HK, and perf setup for dynamic quantities
  * Write python wizard that leverages the cookiecutter questions interface for more flexible template generation
+ * -> Auto-generate the cfe_es.scr line, it needs variables for the app main function, and the .so name
+ * -> Fix the table name generation so cFE can properly load the table with default output (maybe variableize it?)
+ * -> Make separate underscore variable to allow shortening the display name for compiled text strings
+ * -> Add app to HAVE list if using the #defines in sch, to, or ci
 
 
 Open Questions:

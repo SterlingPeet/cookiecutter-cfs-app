@@ -105,7 +105,7 @@
             "help": "You will not be prompted for this value."
         },
         "__app_baseline_version": {
-            "default_value": "0.1.99",
+            "default_value": "v0.1.99",
             "help": "You will not be prompted for this value."
         },
         "__app_build_number": {
