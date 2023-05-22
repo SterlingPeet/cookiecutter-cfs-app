@@ -16,6 +16,8 @@ Features
 --------
 
 * Working app created by running the Cookiecutter_.
+* Optional Tables.
+* Optional Library Dependency.
 * Choice of various licenses.
 
 Requirements
@@ -245,7 +247,7 @@ You will be asked for these fields:
     * - ``__app_baseline_version``
       - .. code:: python
 
-            "0.1.99"
+            "v0.1.99"
 
       - You will not be prompted for this value.
 
