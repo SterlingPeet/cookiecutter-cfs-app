@@ -1,16 +1,16 @@
 project(CFE_{{cookiecutter.__app_slug_uc}} C)
 
 # Create the app module
-add_cfe_app({{cookiecutter.__app_filename_slug}} fsw/src/{{cookiecutter.__app_filename_slug}}.c)
+add_cfe_app({{cookiecutter.app_repo}} fsw/src/{{cookiecutter.__app_filename_slug}}.c)
 
 {% if cookiecutter.library_dep == "yes" %}# Include the public API from {{cookiecutter.library_name}} to demonstrate how
 # to call library-provided functions
-add_cfe_app_dependency({{cookiecutter.__app_filename_slug}} {{cookiecutter.library_name}}){% endif %}
+add_cfe_app_dependency({{cookiecutter.app_repo}} {{cookiecutter.library_name}}){% endif %}
 
 # Add table
-add_cfe_tables({{cookiecutter.__app_filename_slug}} fsw/tables/{{cookiecutter.__app_filename_slug}}_tbl.c)
+add_cfe_tables({{cookiecutter.app_repo}} fsw/tables/{{cookiecutter.__app_filename_slug}}_tbl.c)
 
-target_include_directories({{cookiecutter.__app_filename_slug}} PUBLIC
+target_include_directories({{cookiecutter.app_repo}} PUBLIC
   fsw/mission_inc
   fsw/platform_inc
 )
