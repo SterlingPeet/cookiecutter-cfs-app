@@ -1,4 +1,5 @@
 """Post process the template files."""
+
 from pathlib import Path
 
 
@@ -49,9 +50,13 @@ if __name__ == '__main__':
     From here there are a few more details to complete within your mission code
     to compile and load the app in cFE/cFS.
 
-    1. If needed, Add HK [and possibly WakeUp] MID(s) to Scheduler app's table
-    2. Add Telemetry MIDs to Telemetry Output's table
-    3. Add Command MID to Command Ingestor's table
+    1. If needed, Add HK [and possibly WakeUp] MID(s) to Scheduler app's table, e.g:
+            - include headers in apps/sch_lab/CMakeLists.txt
+            - include MIDs in    apps/sch_lab/fsw/tables/sch_lab_table.c
+    2. Add Telemetry MIDs to Telemetry Output's table, e.g.:
+            - include headers in apps/to_lab/CMakeLists.txt
+            - include MIDs in    apps/to_lab/fsw/tables/to_lab_table.c
+    3. Add Command MID to Command Ingestor's table (if needed)
     4. Update [mission]_defs/target.cmake to build the app [APPLIST variable]
     5. Add the new app to [mission]_defs/cfe_es_startup.scr
 
